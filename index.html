@@ -198,6 +198,25 @@
       background: var(--bg-card-hover);
     }
 
+    /* Language Toggle Button */
+    .lang-toggle-btn {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 0.45rem 0.95rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .lang-toggle-btn:hover {
+      border-color: var(--accent-cyan);
+      background: var(--bg-card-hover);
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
+    }
+
     body.theme-light .icon-moon { display: block; }
     body.theme-light .icon-sun { display: none; }
     body:not(.theme-light) .icon-moon { display: none; }
@@ -1365,6 +1384,14 @@
       .bench-stat-val { font-size: 1.9rem; }
       #toast { left: 1rem; right: 1rem; bottom: 1rem; justify-content: center; }
     }
+
+    @media (max-width: 500px) {
+      .nav-container { padding: 0.65rem 0.85rem; gap: 0.5rem; }
+      .nav-actions { gap: 0.35rem; }
+      .btn-apple { padding: 0.4rem 0.55rem; font-size: 0.72rem; }
+      #theme-text, #share-text { display: none; }
+      .lang-toggle-btn { padding: 0.4rem 0.65rem; }
+    }
   </style>
 </head>
 <body id="hero-section">
@@ -1393,10 +1420,20 @@
         <span class="nav-badge">Case Study</span>
       </a>
       <div class="nav-actions">
+        <!-- Language Toggle Button -->
+        <button id="lang-toggle-btn" class="btn-apple btn-secondary lang-toggle-btn" title="Switch to English / Cambiar a Español" aria-label="Cambiar idioma">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span id="lang-text">EN</span>
+        </button>
+
         <!-- Share button -->
-        <button id="copy-article-btn" class="btn-apple btn-secondary" title="Copiar enlace del artículo">
+        <button id="copy-article-btn" class="btn-apple btn-secondary" title="Copiar enlace del artículo" aria-label="Compartir">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          Compartir
+          <span id="share-text">Compartir</span>
         </button>
 
         <!-- Theme Toggle Button -->
@@ -1412,14 +1449,14 @@
   <!-- Hero Section (Apple Keynote Style) -->
   <main>
     <section class="hero-section">
-      <span class="eyebrow">Ingeniería de Contexto &middot; Arquitectura de Agentes</span>
+      <span class="eyebrow" data-i18n="hero_eyebrow">Ingeniería de Contexto &middot; Arquitectura de Agentes</span>
       
-      <h1 class="hero-title">
+      <h1 class="hero-title" data-i18n="hero_title">
         Más de 800.000 líneas.<br>
         <span class="gradient-accent">Un agente en control absoluto.</span>
       </h1>
       
-      <p class="hero-desc">
+      <p class="hero-desc" data-i18n="hero_desc">
         En proyectos masivos, los modelos de lenguaje no fallan por falta de inteligencia, sino por falta de arquitectura. Así convertimos el SGI de la UNAH en un sistema donde la IA no adivina: razona con precisión quirúrgica.
       </p>
 
@@ -1427,19 +1464,19 @@
       <div class="stats-strip">
         <div class="stat-card apple-reveal delay-1">
           <span class="stat-num gradient-text">+800K</span>
-          <span class="stat-label">Líneas de Código</span>
+          <span class="stat-label" data-i18n="stat_lines">Líneas de Código</span>
         </div>
         <div class="stat-card apple-reveal delay-2">
           <span class="stat-num gradient-text">100%</span>
-          <span class="stat-label">Reglas Operativas</span>
+          <span class="stat-label" data-i18n="stat_rules">Reglas Operativas</span>
         </div>
         <div class="stat-card apple-reveal delay-3">
           <span class="stat-num gradient-text">4</span>
-          <span class="stat-label">Capas de Contexto</span>
+          <span class="stat-label" data-i18n="stat_layers">Capas de Contexto</span>
         </div>
         <div class="stat-card apple-reveal delay-4">
           <span class="stat-num gradient-text">0</span>
-          <span class="stat-label">Alucinaciones en Prod</span>
+          <span class="stat-label" data-i18n="stat_hallucinations">Alucinaciones en Prod</span>
         </div>
       </div>
 
@@ -1483,9 +1520,9 @@
     <!-- The Big Contrast Section -->
     <section class="section-wrap">
       <div class="section-header apple-reveal">
-        <span class="section-eyebrow">El Problema Real</span>
-        <h2 class="section-title">El abismo entre las demos y los sistemas reales</h2>
-        <p class="section-desc">
+        <span class="section-eyebrow" data-i18n="problem_eyebrow">El Problema Real</span>
+        <h2 class="section-title" data-i18n="problem_title">El abismo entre las demos y los sistemas reales</h2>
+        <p class="section-desc" data-i18n="problem_desc">
           En redes abunda la promesa de la IA creando aplicaciones en 30 segundos. Pero cuando te enfrentas a un sistema institucional con auditorías y miles de usuarios concurrentes, el juego cambia por completo.
         </p>
       </div>
@@ -1493,38 +1530,38 @@
       <div class="comparison-container">
         <!-- Negative Side -->
         <div class="comp-box negative apple-reveal delay-1">
-          <span class="comp-badge badge-neg">El enfoque ingenuo (Prompting tradicional)</span>
+          <span class="comp-badge badge-neg" data-i18n="problem_neg_badge">El enfoque ingenuo (Prompting tradicional)</span>
           <ul class="comp-list">
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-              <span><strong>Desbordamiento de tokens:</strong> Leer archivos gigantes de 4,000 líneas satura la memoria del modelo y olvida el contexto clave.</span>
+              <span data-i18n="problem_neg_1"><strong>Desbordamiento de tokens:</strong> Leer archivos gigantes de 4,000 líneas satura la memoria del modelo y olvida el contexto clave.</span>
             </li>
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-              <span><strong>Alucinación de rutas y esquemas:</strong> Inventa tablas, renombra endpoints y quiebra procedimientos almacenados en SQL Server.</span>
+              <span data-i18n="problem_neg_2"><strong>Alucinación de rutas y esquemas:</strong> Inventa tablas, renombra endpoints y quiebra procedimientos almacenados en SQL Server.</span>
             </li>
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-              <span><strong>Cambios destructivos:</strong> Modifica archivos ajenos a la tarea y sobrescribe código crítico sin previo aviso.</span>
+              <span data-i18n="problem_neg_3"><strong>Cambios destructivos:</strong> Modifica archivos ajenos a la tarea y sobrescribe código crítico sin previo aviso.</span>
             </li>
           </ul>
         </div>
 
         <!-- Positive Side -->
         <div class="comp-box positive apple-reveal delay-2">
-          <span class="comp-badge badge-pos">El estándar SGI (Ingeniería de Contexto)</span>
+          <span class="comp-badge badge-pos" data-i18n="problem_pos_badge">El estándar SGI (Ingeniería de Contexto)</span>
           <ul class="comp-list">
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              <span><strong>Lecturas quirúrgicas por rangos:</strong> Búsqueda acotada con <code>rg</code> y delimitación de líneas exactas para proteger la memoria.</span>
+              <span data-i18n="problem_pos_1"><strong>Lecturas quirúrgicas por rangos:</strong> Búsqueda acotada con <code>rg</code> y delimitación de líneas exactas para proteger la memoria.</span>
             </li>
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              <span><strong>Contratos de base de datos leídos previamente:</strong> El agente valida tipos y restricciones antes de proponer cualquier cambio.</span>
+              <span data-i18n="problem_pos_2"><strong>Contratos de base de datos leídos previamente:</strong> El agente valida tipos y restricciones antes de proponer cualquier cambio.</span>
             </li>
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              <span><strong>Skills bajo demanda:</strong> Carga estándares de accesibilidad WCAG 2.2 y patrones de Angular 18 solo cuando la vista lo amerita.</span>
+              <span data-i18n="problem_pos_3"><strong>Skills bajo demanda:</strong> Carga estándares de accesibilidad WCAG 2.2 y patrones de Angular 18 solo cuando la vista lo amerita.</span>
             </li>
           </ul>
         </div>
@@ -1534,9 +1571,9 @@
     <!-- The 4 Pillars Bento Grid -->
     <section class="section-wrap">
       <div class="section-header apple-reveal">
-        <span class="section-eyebrow">Arquitectura</span>
-        <h2 class="section-title">Los 4 pilares de gobernanza del agente</h2>
-        <p class="section-desc">
+        <span class="section-eyebrow" data-i18n="arch_eyebrow">Arquitectura</span>
+        <h2 class="section-title" data-i18n="arch_title">Los 4 pilares de gobernanza del agente</h2>
+        <p class="section-desc" data-i18n="arch_desc">
           No aumentamos el tamaño de la ventana de contexto: aumentamos la pureza de lo que entra en ella.
         </p>
       </div>
@@ -1545,23 +1582,23 @@
         <!-- Bento 1 -->
         <div class="bento-card col-span-8 apple-reveal delay-1">
           <div>
-            <span class="card-tag">Pilar 01 &middot; La Constitución</span>
-            <h3 class="card-title">AGENTS.md: Reglas operativas no negociables</h3>
-            <p class="card-body">
+            <span class="card-tag" data-i18n="p1_tag">Pilar 01 &middot; La Constitución</span>
+            <h3 class="card-title" data-i18n="p1_title">AGENTS.md: Reglas operativas no negociables</h3>
+            <p class="card-body" data-i18n="p1_desc">
               Cada sesión del agente arranca con una constitución obligatoria: compatibilidad nativa con Windows y PowerShell, prohibición estricta de tocar secretos o archivos generados, presupuesto estricto de lectura y la directriz de entregar soluciones completas y ejecutables.
             </p>
           </div>
           <div style="margin-top:2rem; padding: 1rem 1.25rem; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 14px; font-family:'JetBrains Mono',monospace; font-size:0.85rem; color:#38bdf8;">
-            &gt; Regla de Oro: Archivos &gt; 1,500 líneas se leen exclusivamente por rangos acotados. Cero lectura ciega.
+            <span data-i18n="p1_rule">&gt; Regla de Oro: Archivos &gt; 1,500 líneas se leen exclusivamente por rangos acotados. Cero lectura ciega.</span>
           </div>
         </div>
 
         <!-- Bento 2 -->
         <div class="bento-card col-span-4 apple-reveal delay-2">
           <div>
-            <span class="card-tag">Pilar 02 &middot; On-Demand</span>
-            <h3 class="card-title">Skills Modulares</h3>
-            <p class="card-body">
+            <span class="card-tag" data-i18n="p2_tag">Pilar 02 &middot; On-Demand</span>
+            <h3 class="card-title" data-i18n="p2_title">Skills Modulares</h3>
+            <p class="card-body" data-i18n="p2_desc">
               Especialización dinámica en <code>.agents/skills/</code>: Angular 18, Accesibilidad WCAG 2.2, diseño sobrio institucional y auditoría de seguridad.
             </p>
           </div>
@@ -1575,9 +1612,9 @@
         <!-- Bento 3 -->
         <div class="bento-card col-span-4 apple-reveal delay-3">
           <div>
-            <span class="card-tag">Pilar 03 &middot; Persistencia</span>
-            <h3 class="card-title">Inventarios de Datos</h3>
-            <p class="card-body">
+            <span class="card-tag" data-i18n="p3_tag">Pilar 03 &middot; Persistencia</span>
+            <h3 class="card-title" data-i18n="p3_title">Inventarios de Datos</h3>
+            <p class="card-body" data-i18n="p3_desc">
               Mapeos de solo lectura de más de 30.000 líneas de esquemas y procedimientos de SQL Server. El agente consulta antes de construir.
             </p>
           </div>
@@ -1586,9 +1623,9 @@
         <!-- Bento 4 -->
         <div class="bento-card col-span-8 apple-reveal delay-4">
           <div>
-            <span class="card-tag">Pilar 04 &middot; El IDE</span>
-            <h3 class="card-title">Sinergia con Cursor: Indexación y Composer</h3>
-            <p class="card-body">
+            <span class="card-tag" data-i18n="p4_tag">Pilar 04 &middot; El IDE</span>
+            <h3 class="card-title" data-i18n="p4_title">Sinergia con Cursor: Indexación y Composer</h3>
+            <p class="card-body" data-i18n="p4_desc">
               Cursor no es un editor convencional; es un entorno diseñado para agentes. Su motor de indexación semántica rápida permite referenciar símbolos mediante <code>@AGENTS.md</code> y <code>@archivo</code>, orquestando cambios atómicos en frontend y backend de manera simultánea.
             </p>
           </div>
@@ -1596,7 +1633,7 @@
             <div style="width:40px; height:40px; border-radius:10px; background:rgba(0,240,255,0.1); border:1px solid var(--accent-cyan); display:flex; align-items:center; justify-content:center;">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="m21 16-9 5-9-5V8l9-5 9 5v8Z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05"/><path d="M12 22.08V12"/></svg>
             </div>
-            <span style="font-size:0.9rem; color:var(--text-primary); font-weight:600;">Indexación de alta fidelidad sin saturar la CPU</span>
+            <span style="font-size:0.9rem; color:var(--text-primary); font-weight:600;" data-i18n="p4_footer">Indexación de alta fidelidad sin saturar la CPU</span>
           </div>
         </div>
       </div>
@@ -1643,9 +1680,9 @@
     <!-- Interactive Live Simulation Widget -->
     <section class="section-wrap">
       <div class="section-header apple-reveal">
-        <span class="section-eyebrow">Simulador Interactivo</span>
-        <h2 class="section-title">Observa cómo razona el agente en tiempo real</h2>
-        <p class="section-desc">
+        <span class="section-eyebrow" data-i18n="sim_eyebrow">Simulador Interactivo</span>
+        <h2 class="section-title" data-i18n="sim_title">Observa cómo razona el agente en tiempo real</h2>
+        <p class="section-desc" data-i18n="sim_desc">
           Haz clic en cualquiera de las tareas para ver cómo el agente carga las reglas, consulta los esquemas y emite código sin alucinar.
         </p>
       </div>
@@ -1662,13 +1699,13 @@
         </div>
 
         <div class="sim-chips">
-          <button class="chip-btn active" id="sim-btn-1" onclick="runSim(1)">
+          <button class="chip-btn active" id="sim-btn-1" onclick="runSim(1)" data-i18n="sim_btn_1">
             <span>@AGENTS.md</span> &middot; Optimizar vista de Solicitudes
           </button>
-          <button class="chip-btn" id="sim-btn-2" onclick="runSim(2)">
+          <button class="chip-btn" id="sim-btn-2" onclick="runSim(2)" data-i18n="sim_btn_2">
             <span>@skills/accessibility</span> &middot; Auditar WCAG 2.2
           </button>
-          <button class="chip-btn" id="sim-btn-3" onclick="runSim(3)">
+          <button class="chip-btn" id="sim-btn-3" onclick="runSim(3)" data-i18n="sim_btn_3">
             <span>@database</span> &middot; Validar Stored Procedure
           </button>
         </div>
@@ -1684,9 +1721,9 @@
          ========================================================== -->
     <section class="section-wrap" id="benchmark-section">
       <div class="section-header apple-reveal">
-        <span class="section-eyebrow">Evaluación Empírica · Modelos Frontier 2026</span>
-        <h2 class="section-title">LLM Benchmark: Modelos Frontier frente a +800K Líneas</h2>
-        <p class="section-desc">
+        <span class="section-eyebrow" data-i18n="bench_eyebrow">Evaluación Empírica &middot; Modelos Frontier 2026</span>
+        <h2 class="section-title" data-i18n="bench_title">LLM Benchmark: Modelos Frontier frente a +800K Líneas</h2>
+        <p class="section-desc" data-i18n="bench_desc">
           En sistemas institucionales con auditorías y miles de usuarios concurrentes, los benchmarks sintéticos quedan obsoletos. Evaluamos cómo responden los modelos más potentes del momento &mdash;<strong>Claude Opus 5.5 / Sonnet 5, GPT-6.1 Sol, Cursor Composer 2.5, Gemini 3.8 Flash y Grok 4.7</strong>&mdash; frente a la arquitectura real del SGI: directivas de <code>AGENTS.md</code>, código SQL Server de +100K líneas (1,167 SPs) y cero regresiones en Angular 18.
         </p>
       </div>
@@ -1704,7 +1741,7 @@
             Artificial Analysis Benchmark
           </div>
         </div>
-        <p class="aa-panel-subtitle">Artificial Analysis Intelligence Index &middot; Higher is better &middot; Rendimiento empírico en gobernanza institucional SGI</p>
+        <p class="aa-panel-subtitle" data-i18n="bench_chart_sub">Artificial Analysis Intelligence Index &middot; Higher is better &middot; Rendimiento empírico en gobernanza institucional SGI</p>
 
         <!-- Vertical Bar Chart matching the screenshot -->
         <div class="aa-chart-container">
@@ -1779,19 +1816,19 @@
       <div class="benchmark-controls apple-reveal delay-1">
         <button class="bench-filter-btn active" id="btn-filter-global" onclick="switchBenchmark('global')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
-          Score Global SGI
+          <span data-i18n="bench_flt_global">Score Global SGI</span>
         </button>
         <button class="bench-filter-btn" id="btn-filter-rules" onclick="switchBenchmark('rules')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Adherencia a AGENTS.md
+          <span data-i18n="bench_flt_rules">Adherencia a AGENTS.md</span>
         </button>
         <button class="bench-filter-btn" id="btn-filter-sql" onclick="switchBenchmark('sql')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          Lógica SQL (+100K LOC)
+          <span data-i18n="bench_flt_sql">Lógica SQL (+100K LOC)</span>
         </button>
         <button class="bench-filter-btn" id="btn-filter-tokens" onclick="switchBenchmark('tokens')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          Eficiencia & Cero Desborde
+          <span data-i18n="bench_flt_tokens">Eficiencia & Cero Desborde</span>
         </button>
       </div>
 
@@ -1803,26 +1840,26 @@
       <!-- Comparative Key Stats Strip (Empirical Results on SGI) -->
       <div class="bench-stats-strip apple-reveal delay-3">
         <div class="bench-stat-card">
-          <span class="bench-stat-badge">Impacto en Contexto</span>
+          <span class="bench-stat-badge" data-i18n="bstat1_badge">Impacto en Contexto</span>
           <span class="bench-stat-val">-78%</span>
-          <span class="bench-stat-lbl">Tokens consumidos por tarea compleja aplicando directivas de <code>AGENTS.md</code> vs prompting convencional sin reglas.</span>
+          <span class="bench-stat-lbl" data-i18n="bstat1_desc">Tokens consumidos por tarea compleja aplicando directivas de <code>AGENTS.md</code> vs prompting convencional sin reglas.</span>
         </div>
         <div class="bench-stat-card">
-          <span class="bench-stat-badge">Tolerancia a Fallos</span>
+          <span class="bench-stat-badge" data-i18n="bstat2_badge">Tolerancia a Fallos</span>
           <span class="bench-stat-val">&lt; 0.6%</span>
-          <span class="bench-stat-lbl">Tasa de alucinación en las +100K líneas de código y procedimientos SQL Server gracias a la indexación estricta.</span>
+          <span class="bench-stat-lbl" data-i18n="bstat2_desc">Tasa de alucinación en las +100K líneas de código y procedimientos SQL Server gracias a la indexación estricta.</span>
         </div>
         <div class="bench-stat-card">
-          <span class="bench-stat-badge">Calidad de Código</span>
+          <span class="bench-stat-badge" data-i18n="bstat3_badge">Calidad de Código</span>
           <span class="bench-stat-val">98.2%</span>
-          <span class="bench-stat-lbl">Compilación limpia en Angular 18 con Signals y OnPush a la primera pasada sin alterar dependencias.</span>
+          <span class="bench-stat-lbl" data-i18n="bstat3_desc">Compilación limpia en Angular 18 con Signals y OnPush a la primera pasada sin alterar dependencias.</span>
         </div>
       </div>
     </section>
 
     <!-- The Philosophical Manifesto -->
     <section class="quote-section apple-reveal">
-      <blockquote class="quote-text gradient-text">
+      <blockquote class="quote-text gradient-text" data-i18n="manifesto_quote">
         &ldquo;La inteligencia artificial no reemplaza al arquitecto de software: premia al desarrollador que sabe estructurar, documentar y gobernar su sistema.&rdquo;
       </blockquote>
     </section>
@@ -1839,15 +1876,243 @@
     <div class="footer-home-wrap apple-reveal">
       <a href="#hero-section" class="footer-glass-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-        <span>Inicio</span>
+        <span data-i18n="footer_top">Inicio</span>
       </a>
     </div>
     <div class="footer-text">
-      <p class="footer-apple-tag">Diseñado con la filosofía de ingeniería de producto de Apple &middot; 2026</p>
+      <p class="footer-apple-tag" data-i18n="footer_tag">Diseñado con la filosofía de ingeniería de producto de Apple &middot; 2026</p>
     </div>
   </footer>
 
   <script>
+    // ==========================================
+    // 0. I18N / MULTILINGUAL DICTIONARY (ES / EN)
+    // ==========================================
+    const translations = {
+      es: {
+        page_title: "IA a Escala Institucional: +800K Líneas de Código en SGI-UNAH",
+        meta_desc: "Cómo la ingeniería de contexto, AGENTS.md y Cursor permiten que un agente de IA domine un repositorio institucional de más de 800,000 líneas de código sin alucinaciones.",
+        share_btn: "Compartir",
+        share_title: "Copiar enlace del artículo",
+        theme_light: "Tema Claro",
+        theme_dark: "Tema Oscuro",
+        theme_title: "Alternar entre Tema Claro y Oscuro",
+        lang_btn_text: "EN",
+        lang_btn_title: "Switch to English",
+        toast_link_copied: "¡Enlace del artículo copiado!",
+        toast_light_mode: "Modo Claro activado",
+        toast_dark_mode: "Modo Oscuro activado",
+        toast_lang_changed: "Idioma cambiado a Español",
+
+        hero_eyebrow: "Ingeniería de Contexto &middot; Arquitectura de Agentes",
+        hero_title: "Más de 800.000 líneas.<br><span class=\"gradient-accent\">Un agente en control absoluto.</span>",
+        hero_desc: "En proyectos masivos, los modelos de lenguaje no fallan por falta de inteligencia, sino por falta de arquitectura. Así convertimos el SGI de la UNAH en un sistema donde la IA no adivina: razona con precisión quirúrgica.",
+        stat_lines: "Líneas de Código",
+        stat_rules: "Reglas Operativas",
+        stat_layers: "Capas de Contexto",
+        stat_hallucinations: "Alucinaciones en Prod",
+
+        problem_eyebrow: "El Problema Real",
+        problem_title: "El abismo entre las demos y los sistemas reales",
+        problem_desc: "En redes abunda la promesa de la IA creando aplicaciones en 30 segundos. Pero cuando te enfrentas a un sistema institucional con auditorías y miles de usuarios concurrentes, el juego cambia por completo.",
+        problem_neg_badge: "El enfoque ingenuo (Prompting tradicional)",
+        problem_neg_1: "<strong>Desbordamiento de tokens:</strong> Leer archivos gigantes de 4,000 líneas satura la memoria del modelo y olvida el contexto clave.",
+        problem_neg_2: "<strong>Alucinación de rutas y esquemas:</strong> Inventa tablas, renombra endpoints y quiebra procedimientos almacenados en SQL Server.",
+        problem_neg_3: "<strong>Cambios destructivos:</strong> Modifica archivos ajenos a la tarea y sobrescribe código crítico sin previo aviso.",
+        problem_pos_badge: "El estándar SGI (Ingeniería de Contexto)",
+        problem_pos_1: "<strong>Lecturas quirúrgicas por rangos:</strong> Búsqueda acotada con <code>rg</code> y delimitación de líneas exactas para proteger la memoria.",
+        problem_pos_2: "<strong>Contratos de base de datos leídos previamente:</strong> El agente valida tipos y restricciones antes de proponer cualquier cambio.",
+        problem_pos_3: "<strong>Skills bajo demanda:</strong> Carga estándares de accesibilidad WCAG 2.2 y patrones de Angular 18 solo cuando la vista lo amerita.",
+
+        arch_eyebrow: "Arquitectura",
+        arch_title: "Los 4 pilares de gobernanza del agente",
+        arch_desc: "No aumentamos el tamaño de la ventana de contexto: aumentamos la pureza de lo que entra en ella.",
+        p1_tag: "Pilar 01 &middot; La Constitución",
+        p1_title: "AGENTS.md: Reglas operativas no negociables",
+        p1_desc: "Cada sesión del agente arranca con una constitución obligatoria: compatibilidad nativa con Windows y PowerShell, prohibición estricta de tocar secretos o archivos generados, presupuesto estricto de lectura y la directriz de entregar soluciones completas y ejecutables.",
+        p1_rule: "&gt; Regla de Oro: Archivos &gt; 1,500 líneas se leen exclusivamente por rangos acotados. Cero lectura ciega.",
+        p2_tag: "Pilar 02 &middot; On-Demand",
+        p2_title: "Skills Modulares",
+        p2_desc: "Especialización dinámica en <code>.agents/skills/</code>: Angular 18, Accesibilidad WCAG 2.2, diseño sobrio institucional y auditoría de seguridad.",
+        p3_tag: "Pilar 03 &middot; Persistencia",
+        p3_title: "Inventarios de Datos",
+        p3_desc: "Mapeos de solo lectura de más de 30.000 líneas de esquemas y procedimientos de SQL Server. El agente consulta antes de construir.",
+        p4_tag: "Pilar 04 &middot; El IDE",
+        p4_title: "Sinergia con Cursor: Indexación y Composer",
+        p4_desc: "Cursor no es un editor convencional; es un entorno diseñado para agentes. Su motor de indexación semántica rápida permite referenciar símbolos mediante <code>@AGENTS.md</code> y <code>@archivo</code>, orquestando cambios atómicos en frontend y backend de manera simultánea.",
+        p4_footer: "Indexación de alta fidelidad sin saturar la CPU",
+
+        sim_eyebrow: "Simulador Interactivo",
+        sim_title: "Observa cómo razona el agente en tiempo real",
+        sim_desc: "Haz clic en cualquiera de las tareas para ver cómo el agente carga las reglas, consulta los esquemas y emite código sin alucinar.",
+        sim_btn_1: "<span>@AGENTS.md</span> &middot; Optimizar vista de Solicitudes",
+        sim_btn_2: "<span>@skills/accessibility</span> &middot; Auditar WCAG 2.2",
+        sim_btn_3: "<span>@database</span> &middot; Validar Stored Procedure",
+
+        bench_eyebrow: "Evaluación Empírica &middot; Modelos Frontier 2026",
+        bench_title: "LLM Benchmark: Modelos Frontier frente a +800K Líneas",
+        bench_desc: "En sistemas institucionales con auditorías y miles de usuarios concurrentes, los benchmarks sintéticos quedan obsoletos. Evaluamos cómo responden los modelos más potentes del momento &mdash;<strong>Claude Opus 5.5 / Sonnet 5, GPT-6.1 Sol, Cursor Composer 2.5, Gemini 3.8 Flash y Grok 4.7</strong>&mdash; frente a la arquitectura real del SGI: directivas de <code>AGENTS.md</code>, código SQL Server de +100K líneas (1,167 SPs) y cero regresiones en Angular 18.",
+        bench_chart_sub: "Artificial Analysis Intelligence Index &middot; Higher is better &middot; Rendimiento empírico en gobernanza institucional SGI",
+        bench_flt_global: "Score Global SGI",
+        bench_flt_rules: "Adherencia a AGENTS.md",
+        bench_flt_sql: "Lógica SQL (+100K LOC)",
+        bench_flt_tokens: "Eficiencia & Cero Desborde",
+        bstat1_badge: "Impacto en Contexto",
+        bstat1_desc: "Tokens consumidos por tarea compleja aplicando directivas de <code>AGENTS.md</code> vs prompting convencional sin reglas.",
+        bstat2_badge: "Tolerancia a Fallos",
+        bstat2_desc: "Tasa de alucinación en las +100K líneas de código y procedimientos SQL Server gracias a la indexación estricta.",
+        bstat3_badge: "Calidad de Código",
+        bstat3_desc: "Compilación limpia en Angular 18 con Signals y OnPush a la primera pasada sin alterar dependencias.",
+
+        manifesto_quote: "&ldquo;La inteligencia artificial no reemplaza al arquitecto de software: premia al desarrollador que sabe estructurar, documentar y gobernar su sistema.&rdquo;",
+        footer_top: "Inicio",
+        footer_tag: "Diseñado con la filosofía de ingeniería de producto de Apple &middot; 2026"
+      },
+      en: {
+        page_title: "Institutional-Scale AI: +800K Lines of Code in SGI-UNAH",
+        meta_desc: "How context engineering, AGENTS.md, and Cursor empower an AI agent to master an institutional codebase of over 800,000 lines with zero hallucinations.",
+        share_btn: "Share",
+        share_title: "Copy article link",
+        theme_light: "Light Mode",
+        theme_dark: "Dark Mode",
+        theme_title: "Toggle Light and Dark Mode",
+        lang_btn_text: "ES",
+        lang_btn_title: "Cambiar a Español",
+        toast_link_copied: "Article link copied!",
+        toast_light_mode: "Light Mode enabled",
+        toast_dark_mode: "Dark Mode enabled",
+        toast_lang_changed: "Language switched to English",
+
+        hero_eyebrow: "Context Engineering &middot; Agent Architecture",
+        hero_title: "Over 800,000 lines of code.<br><span class=\"gradient-accent\">An agent in total control.</span>",
+        hero_desc: "In massive codebases, language models don't fail from lack of intelligence, but from lack of architecture. This is how we transformed UNAH's SGI into a system where AI doesn't guess: it reasons with surgical precision.",
+        stat_lines: "Lines of Code",
+        stat_rules: "Operational Rules",
+        stat_layers: "Context Layers",
+        stat_hallucinations: "Hallucinations in Prod",
+
+        problem_eyebrow: "The Real Challenge",
+        problem_title: "The chasm between demos and production systems",
+        problem_desc: "Social media is flooded with claims of AI creating apps in 30 seconds. But when facing an audited institutional system with thousands of concurrent users, the game completely changes.",
+        problem_neg_badge: "The naive approach (Traditional prompting)",
+        problem_neg_1: "<strong>Token overflow:</strong> Reading massive 4,000-line files saturates model memory and loses critical context.",
+        problem_neg_2: "<strong>Schema and route hallucination:</strong> Fabricates tables, renames API endpoints, and breaks SQL Server Stored Procedures.",
+        problem_neg_3: "<strong>Destructive changes:</strong> Alters files unrelated to the task and overwrites critical code without warning.",
+        problem_pos_badge: "The SGI Standard (Context Engineering)",
+        problem_pos_1: "<strong>Surgical range reads:</strong> Scoped searching with <code>rg</code> and exact line boundaries to safeguard token memory.",
+        problem_pos_2: "<strong>Pre-read database contracts:</strong> The agent validates schemas, types, and constraints before proposing any change.",
+        problem_pos_3: "<strong>On-demand skills:</strong> Ingests WCAG 2.2 accessibility standards and Angular 18 patterns only when the view requires it.",
+
+        arch_eyebrow: "Architecture",
+        arch_title: "The 4 pillars of agent governance",
+        arch_desc: "We didn't expand the context window: we elevated the purity of what enters it.",
+        p1_tag: "Pillar 01 &middot; The Constitution",
+        p1_title: "AGENTS.md: Non-negotiable operating rules",
+        p1_desc: "Every agent session launches with a mandatory constitution: native Windows/PowerShell compatibility, strict prohibition against touching secrets or generated files, token read budgets, and the mandate to deliver complete, executable solutions.",
+        p1_rule: "&gt; Golden Rule: Files &gt; 1,500 lines are read exclusively via targeted ranges. Zero blind reading.",
+        p2_tag: "Pillar 02 &middot; On-Demand",
+        p2_title: "Modular Skills",
+        p2_desc: "Dynamic specialization in <code>.agents/skills/</code>: Angular 18, WCAG 2.2 Accessibility, clean institutional design, and security audits.",
+        p3_tag: "Pillar 03 &middot; Persistence",
+        p3_title: "Data Inventories",
+        p3_desc: "Read-only mappings of over 30,000 lines of SQL Server schemas and stored procedures. The agent queries before building.",
+        p4_tag: "Pillar 04 &middot; The IDE",
+        p4_title: "Cursor Synergy: Indexing and Composer",
+        p4_desc: "Cursor is not a conventional editor; it is an agentic environment. Its fast semantic indexing engine allows symbol referencing via <code>@AGENTS.md</code> and <code>@file</code>, orchestrating atomic multi-file changes across frontend and backend simultaneously.",
+        p4_footer: "High-fidelity indexing without CPU saturation",
+
+        sim_eyebrow: "Interactive Simulator",
+        sim_title: "Watch the agent reason in real time",
+        sim_desc: "Click on any task to see how the agent loads rules, queries database schemas, and writes verified code without hallucinations.",
+        sim_btn_1: "<span>@AGENTS.md</span> &middot; Optimize Solicitudes view",
+        sim_btn_2: "<span>@skills/accessibility</span> &middot; Audit WCAG 2.2",
+        sim_btn_3: "<span>@database</span> &middot; Validate Stored Procedure",
+
+        bench_eyebrow: "Empirical Evaluation &middot; 2026 Frontier Models",
+        bench_title: "LLM Benchmark: Frontier Models vs +800K Lines of Code",
+        bench_desc: "In audited institutional systems with thousands of concurrent users, synthetic benchmarks fall short. We evaluated the most capable frontier models &mdash;<strong>Claude Opus 5.5 / Sonnet 5, GPT-6.1 Sol, Cursor Composer 2.5, Gemini 3.8 Flash, and Grok 4.7</strong>&mdash; against the real-world SGI architecture: <code>AGENTS.md</code> governance, +100K LOC of SQL Server logic (1,167 SPs), and zero regressions in Angular 18.",
+        bench_chart_sub: "Artificial Analysis Intelligence Index &middot; Higher is better &middot; Empirical performance in SGI institutional governance",
+        bench_flt_global: "Global SGI Score",
+        bench_flt_rules: "AGENTS.md Adherence",
+        bench_flt_sql: "SQL Logic (+100K LOC)",
+        bench_flt_tokens: "Efficiency & Zero Overflow",
+        bstat1_badge: "Context Impact",
+        bstat1_desc: "Tokens consumed per complex task using <code>AGENTS.md</code> directives vs conventional unconstrained prompting.",
+        bstat2_badge: "Fault Tolerance",
+        bstat2_desc: "Hallucination rate across +100K lines of SQL Server code and stored procedures thanks to strict indexing.",
+        bstat3_badge: "Code Quality",
+        bstat3_desc: "Clean compilation in Angular 18 with Signals and OnPush on the first pass without altering dependencies.",
+
+        manifesto_quote: "&ldquo;Artificial intelligence does not replace the software architect: it rewards the developer who knows how to structure, document, and govern their system.&rdquo;",
+        footer_top: "Top",
+        footer_tag: "Designed with Apple product engineering philosophy &middot; 2026"
+      }
+    };
+
+    let currentLang = 'es';
+    const langBtn = document.getElementById('lang-toggle-btn');
+    const langText = document.getElementById('lang-text');
+    const shareBtn = document.getElementById('copy-article-btn');
+    const shareText = document.getElementById('share-text');
+
+    function setLanguage(lang, silent = false) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      
+      // Page title & meta
+      document.title = translations[lang].page_title;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', translations[lang].meta_desc);
+
+      // Button texts and titles
+      if (langText) langText.textContent = translations[lang].lang_btn_text;
+      if (langBtn) {
+        langBtn.title = translations[lang].lang_btn_title;
+        langBtn.setAttribute('aria-label', translations[lang].lang_btn_title);
+      }
+      if (shareText) shareText.textContent = translations[lang].share_btn;
+      if (shareBtn) {
+        shareBtn.title = translations[lang].share_title;
+        shareBtn.setAttribute('aria-label', translations[lang].share_title);
+      }
+      if (themeBtn) {
+        themeBtn.title = translations[lang].theme_title;
+        themeBtn.setAttribute('aria-label', translations[lang].theme_title);
+        const isLight = document.body.classList.contains('theme-light');
+        themeText.textContent = isLight ? translations[lang].theme_dark : translations[lang].theme_light;
+      }
+
+      // Replace all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key] !== undefined) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Update simulation view
+      if (typeof runSim === 'function') {
+        runSim(currentSimIndex);
+      }
+
+      // Update benchmark view
+      if (typeof switchBenchmark === 'function') {
+        switchBenchmark(activeBenchmarkFilter);
+      }
+
+      localStorage.setItem('sgi_lang', lang);
+
+      if (!silent) {
+        showToast(translations[lang].toast_lang_changed);
+      }
+    }
+
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        setLanguage(currentLang === 'es' ? 'en' : 'es');
+      });
+    }
+
     // ==========================================
     // 1. THEME TOGGLE (LIGHT / DARK THEME)
     // ==========================================
@@ -1857,11 +2122,11 @@
     function applyTheme(isLight) {
       if (isLight) {
         document.body.classList.add('theme-light');
-        themeText.textContent = 'Tema Oscuro';
+        themeText.textContent = translations[currentLang].theme_dark;
         localStorage.setItem('sgi_theme', 'light');
       } else {
         document.body.classList.remove('theme-light');
-        themeText.textContent = 'Tema Claro';
+        themeText.textContent = translations[currentLang].theme_light;
         localStorage.setItem('sgi_theme', 'dark');
       }
     }
@@ -1874,7 +2139,7 @@
     themeBtn.addEventListener('click', () => {
       const isLight = document.body.classList.contains('theme-light');
       applyTheme(!isLight);
-      showToast(!isLight ? 'Modo Claro activado' : 'Modo Oscuro activado');
+      showToast(!isLight ? translations[currentLang].toast_light_mode : translations[currentLang].toast_dark_mode);
     });
 
     // ==========================================
@@ -1998,6 +2263,7 @@
       const explorerW = 280;
       ctx1.fillStyle = 'rgba(15, 20, 32, 0.7)';
       ctx1.fillRect(0, 0, explorerW, h);
+
       ctx1.strokeStyle = 'rgba(255, 255, 255, 0.06)';
       ctx1.strokeRect(0, 0, explorerW, h);
 
@@ -2040,7 +2306,7 @@
 
         ctx1.fillStyle = '#38bdf8';
         ctx1.font = '10px "JetBrains Mono", monospace';
-        ctx1.fillText('Indexing +800,000 LOC...', 24, 320);
+        ctx1.fillText(currentLang === 'es' ? 'Indexando +800,000 LOC...' : 'Indexing +800,000 LOC...', 24, 320);
       }
 
       // Middle Column: TypeScript Code Editor
@@ -2120,18 +2386,23 @@
       if (t > 3) {
         ctx1.fillStyle = '#94a3b8';
         ctx1.font = '11px "Plus Jakarta Sans", sans-serif';
-        ctx1.fillText('Prompt: Optimizar vista de Solicitudes SGI', chatX + 18, 120);
+        ctx1.fillText(currentLang === 'es' ? 'Prompt: Optimizar vista de Solicitudes SGI' : 'Prompt: Optimize SGI Solicitudes view', chatX + 18, 120);
 
         ctx1.fillStyle = '#38bdf8';
-        ctx1.fillText('● Agente razonando...', chatX + 18, 150);
+        ctx1.fillText(currentLang === 'es' ? '● Agente razonando...' : '● Agent reasoning...', chatX + 18, 150);
 
         ctx1.fillStyle = '#cbd5e1';
         ctx1.font = '11px "JetBrains Mono", monospace';
-        const steps = [
+        const steps = currentLang === 'es' ? [
           '1. Leyendo reglas de AGENTS.md',
           '2. Activando OnPush ChangeDetection',
           '3. Mapeando Signals reactivas',
           '4. Verificando accesibilidad WCAG 2.2'
+        ] : [
+          '1. Reading AGENTS.md rules',
+          '2. Enabling OnPush ChangeDetection',
+          '3. Mapping reactive Signals',
+          '4. Verifying WCAG 2.2 accessibility'
         ];
         const stepCount = Math.min(steps.length, Math.floor((t - 3) * 1.5));
         for (let s = 0; s < stepCount; s++) {
@@ -2147,7 +2418,7 @@
 
         ctx1.fillStyle = '#4ade80';
         ctx1.font = '700 12px "JetBrains Mono", monospace';
-        ctx1.fillText('✔ REGLAS AUDITADAS: 0 ERRORES', chatX + 32, 368);
+        ctx1.fillText(currentLang === 'es' ? '✔ REGLAS AUDITADAS: 0 ERRORES' : '✔ AUDITED RULES: 0 ERRORS', chatX + 32, 368);
       }
 
       requestAnimationFrame(renderVideo1);
@@ -2178,10 +2449,34 @@
       ctx2.fillRect(0, 0, w, h);
 
       const cards = [
-        { title: '1. AGENTS.md', sub: 'Constitución & Reglas', desc: 'Presupuesto de tokens, seguridad, Windows/PS', x: 50, active: t >= 0 && t < 3 },
-        { title: '2. Skills Modulares', sub: '.agents/skills/', desc: 'Angular 18, WCAG 2.2, diseño sobrio', x: 320, active: t >= 2.5 && t < 5.5 },
-        { title: '3. Data & Schemas', sub: 'SQL Server Maps', desc: '30k+ líneas, SPs, roles y permisos', x: 590, active: t >= 5.0 && t < 8.0 },
-        { title: '4. Cursor AI Engine', sub: 'Composer & Indexing', desc: 'Output seguro, atómico y verificado', x: 860, active: t >= 7.5 }
+        {
+          title: '1. AGENTS.md',
+          sub: currentLang === 'es' ? 'Constitución & Reglas' : 'Constitution & Rules',
+          desc: currentLang === 'es' ? 'Presupuesto de tokens, seguridad, Windows/PS' : 'Token budget, security, Windows/PS',
+          x: 50,
+          active: t >= 0 && t < 3
+        },
+        {
+          title: currentLang === 'es' ? '2. Skills Modulares' : '2. Modular Skills',
+          sub: '.agents/skills/',
+          desc: currentLang === 'es' ? 'Angular 18, WCAG 2.2, diseño sobrio' : 'Angular 18, WCAG 2.2, sober design',
+          x: 320,
+          active: t >= 2.5 && t < 5.5
+        },
+        {
+          title: currentLang === 'es' ? '3. Data & Esquemas' : '3. Data & Schemas',
+          sub: 'SQL Server Maps',
+          desc: currentLang === 'es' ? '+100k líneas, SPs, roles y permisos' : '+100k lines, SPs, roles and permissions',
+          x: 590,
+          active: t >= 5.0 && t < 8.0
+        },
+        {
+          title: '4. Cursor AI Engine',
+          sub: 'Composer & Indexing',
+          desc: currentLang === 'es' ? 'Output seguro, atómico y verificado' : 'Safe, atomic, and verified output',
+          x: 860,
+          active: t >= 7.5
+        }
       ];
 
       const cardW = 230;
@@ -2252,7 +2547,7 @@
 
       ctx2.font = '700 16px "Plus Jakarta Sans", sans-serif';
       ctx2.fillStyle = '#ffffff';
-      ctx2.fillText('FLUJO DE CONTEXTO SIN ALUCINACIONES: +800K LÍNEAS DE CÓDIGO', 50, 65);
+      ctx2.fillText(currentLang === 'es' ? 'FLUJO DE CONTEXTO SIN ALUCINACIONES: +800K LÍNEAS DE CÓDIGO' : 'CONTEXT PIPELINE WITH ZERO HALLUCINATIONS: +800K LOC', 50, 65);
 
       requestAnimationFrame(renderVideo2);
     }
@@ -2261,14 +2556,23 @@
     // ==========================================
     // 5. SIMULATOR INTERACTION
     // ==========================================
+    let currentSimIndex = 1;
     const simData = {
       1: {
-        steps: [
-          "Cargando regla de AGENTS.md: Lectura quirúrgica por rangos en archivos >1,500 líneas...",
-          "Analizando 'SolicitudesComponent' mediante TypeScript AST & Angular 18 signals...",
-          "Detectado cuello de botella en renderizado de 400 solicitudes simultáneas.",
-          "Generando refactorización con OnPush Change Detection y validación de tipos estricta:"
-        ],
+        steps: {
+          es: [
+            "Cargando regla de AGENTS.md: Lectura quirúrgica por rangos en archivos >1,500 líneas...",
+            "Analizando 'SolicitudesComponent' mediante TypeScript AST & Angular 18 signals...",
+            "Detectado cuello de botella en renderizado de 400 solicitudes simultáneas.",
+            "Generando refactorización con OnPush Change Detection y validación de tipos estricta:"
+          ],
+          en: [
+            "Loading AGENTS.md rule: Surgical range reads on files >1,500 lines...",
+            "Analyzing 'SolicitudesComponent' via TypeScript AST & Angular 18 signals...",
+            "Detected rendering bottleneck under 400 concurrent requests.",
+            "Generating refactoring with OnPush Change Detection and strict type validation:"
+          ]
+        },
         code: `@Component({
   selector: 'sgi-solicitudes',
   standalone: true,
@@ -2282,11 +2586,18 @@ export class SolicitudesComponent {
 }`
       },
       2: {
-        steps: [
-          "Cargando skill: .agents/skills/accessibility (WCAG 2.2 Nivel AA)...",
-          "Auditando contraste de color, etiquetas ARIA y gestión del foco en modales.",
-          "Corrigiendo elemento no accesible en navegación por teclado (tabindex y keydown):"
-        ],
+        steps: {
+          es: [
+            "Cargando skill: .agents/skills/accessibility (WCAG 2.2 Nivel AA)...",
+            "Auditando contraste de color, etiquetas ARIA y gestión del foco en modales.",
+            "Corrigiendo elemento no accesible en navegación por teclado (tabindex y keydown):"
+          ],
+          en: [
+            "Loading skill: .agents/skills/accessibility (WCAG 2.2 Level AA)...",
+            "Auditing color contrast, ARIA labels, and modal focus management.",
+            "Fixing inaccessible element for keyboard navigation (tabindex and keydown):"
+          ]
+        },
         code: `<!-- Accesibilidad Mejorada: WCAG 2.2 Cumplida -->
 <button 
   type="button" 
@@ -2300,12 +2611,20 @@ export class SolicitudesComponent {
 </button>`
       },
       3: {
-        steps: [
-          "Consultando inventario de esquemas: documentacion-sgi/datos/inventario-bd-readonly.json...",
-          "Localizado procedimiento almacenado: 'sp_SGI_ObtenerHistorialSolicitud'...",
-          "Validando parámetros requeridos (@IdSolicitud INT, @RolUsuario NVARCHAR(50))...",
-          "Generando query SQL Server parametrizado a prueba de SQL Injection:"
-        ],
+        steps: {
+          es: [
+            "Consultando inventario de esquemas: documentacion-sgi/datos/inventario-bd-readonly.json...",
+            "Localizado procedimiento almacenado: 'sp_SGI_ObtenerHistorialSolicitud'...",
+            "Validando parámetros requeridos (@IdSolicitud INT, @RolUsuario NVARCHAR(50))...",
+            "Generando query SQL Server parametrizado a prueba de SQL Injection:"
+          ],
+          en: [
+            "Querying schema inventory: documentacion-sgi/datos/inventario-bd-readonly.json...",
+            "Located Stored Procedure: 'sp_SGI_ObtenerHistorialSolicitud'...",
+            "Validating required parameters (@IdSolicitud INT, @RolUsuario NVARCHAR(50))...",
+            "Generating SQL Injection-proof parameterized SQL Server query:"
+          ]
+        },
         code: `// SQL Server Parametrizado (Backend Node / mssql)
 const request = pool.request();
 request.input('IdSolicitud', sql.Int, solicitudId);
@@ -2316,16 +2635,20 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
       }
     };
 
-    function runSim(index) {
+    function runSim(index = currentSimIndex) {
+      currentSimIndex = index;
       document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
       const activeBtn = document.getElementById('sim-btn-' + index);
       if (activeBtn) activeBtn.classList.add('active');
 
       const data = simData[index];
       const out = document.getElementById('sim-output');
+      if (!out) return;
       out.innerHTML = '';
 
-      data.steps.forEach((step, i) => {
+      const steps = (data.steps && data.steps[currentLang]) ? data.steps[currentLang] : (data.steps.es || []);
+
+      steps.forEach((step, i) => {
         setTimeout(() => {
           const stepDiv = document.createElement('div');
           stepDiv.className = 'agent-step';
@@ -2335,7 +2658,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           `;
           out.appendChild(stepDiv);
 
-          if (i === data.steps.length - 1 && data.code) {
+          if (i === steps.length - 1 && data.code) {
             setTimeout(() => {
               const codePre = document.createElement('pre');
               codePre.className = 'step-code';
@@ -2346,7 +2669,6 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         }, i * 350);
       });
     }
-    runSim(1);
 
     // ==========================================
     // 6. LLM BENCHMARK: FRONTIER MODELS (SGI +800K LOC)
@@ -2358,7 +2680,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'Anthropic · Frontier Reasoning (Index: 58)',
         accentColor: '#c2704e',
         accentGrad: 'linear-gradient(135deg, #c2704e, #ea580c)',
-        badge: '#1 Intelligence Index · Cero Regresiones',
+        badge: {
+          es: '#1 Intelligence Index · Cero Regresiones',
+          en: '#1 Intelligence Index · Zero Regressions'
+        },
         scores: {
           global: 99.4,
           rules: 99.8,
@@ -2366,13 +2691,19 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           tokens: 97.0
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 99.8 },
-          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 98.2 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 99.5 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 97.0 }
+          { key: 'rules', val: 99.8 },
+          { key: 'sql', val: 98.2 },
+          { key: 'angular', val: 99.5 },
+          { key: 'tokens', val: 97.0 }
         ],
-        highlight: '<strong>El estándar de oro absoluto en gobernanza.</strong> Acata al 100% las directivas negativas de <code>AGENTS.md</code>, jamás toca código fuera del alcance, respeta el presupuesto de &lt;1,500 líneas y produce refactorizaciones atómicas sin romper tipos.',
-        role: 'Líder Absoluto en Gobernanza'
+        highlight: {
+          es: '<strong>El estándar de oro absoluto en gobernanza.</strong> Acata al 100% las directivas negativas de <code>AGENTS.md</code>, jamás toca código fuera del alcance, respeta el presupuesto de &lt;1,500 líneas y produce refactorizaciones atómicas sin romper tipos.',
+          en: '<strong>The absolute gold standard in governance.</strong> Obeys 100% of negative directives from <code>AGENTS.md</code>, never touches out-of-scope files, respects the &lt;1,500 line budget, and produces atomic refactorings without type breaks.'
+        },
+        role: {
+          es: 'Líder Absoluto en Gobernanza',
+          en: 'Absolute Leader in Governance'
+        }
       },
       {
         id: 'composer',
@@ -2380,7 +2711,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'Cursor AI · Native Agentic Core (Index: 55)',
         accentColor: '#00f0ff',
         accentGrad: 'linear-gradient(135deg, #00f0ff, #0284c7)',
-        badge: 'Motor Agéntico IDE · Multi-File Loop',
+        badge: {
+          es: 'Motor Agéntico IDE · Multi-File Loop',
+          en: 'IDE Agentic Core · Multi-File Loop'
+        },
         scores: {
           global: 98.6,
           rules: 99.0,
@@ -2388,13 +2722,19 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           tokens: 98.5
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 99.0 },
-          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 97.5 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 98.9 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 98.5 }
+          { key: 'rules', val: 99.0 },
+          { key: 'sql', val: 97.5 },
+          { key: 'angular', val: 98.9 },
+          { key: 'tokens', val: 98.5 }
         ],
-        highlight: '<strong>Orquestador agéntico nativo del IDE.</strong> Lee directamente las skills locales (<code>.agents/skills/</code>), ejecuta diffs atómicos multi-archivo y valida sintaxis con TypeScript linter en bucle cerrado antes de confirmar cambios.',
-        role: 'Orquestación Agéntica en Cursor'
+        highlight: {
+          es: '<strong>Orquestador agéntico nativo del IDE.</strong> Lee directamente las skills locales (<code>.agents/skills/</code>), ejecuta diffs atómicos multi-archivo y valida sintaxis con TypeScript linter en bucle cerrado antes de confirmar cambios.',
+          en: '<strong>Native IDE agentic orchestrator.</strong> Directly ingests local skills (<code>.agents/skills/</code>), executes atomic multi-file diffs, and validates syntax with TypeScript linter in a closed loop before committing changes.'
+        },
+        role: {
+          es: 'Orquestación Agéntica en Cursor',
+          en: 'Agentic Orchestration in Cursor'
+        }
       },
       {
         id: 'gemini-flash',
@@ -2402,7 +2742,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'Google DeepMind · 5M Multimodal Context (Index: 53)',
         accentColor: '#22c55e',
         accentGrad: 'linear-gradient(135deg, #22c55e, #15803d)',
-        badge: '5M Context · Ingesta Total de BD',
+        badge: {
+          es: '5M Context · Ingesta Total de BD',
+          en: '5M Context · Full Database Ingestion'
+        },
         scores: {
           global: 97.8,
           rules: 96.5,
@@ -2410,13 +2753,19 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           tokens: 96.0
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 96.5 },
-          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 99.6 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 96.0 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 96.0 }
+          { key: 'rules', val: 96.5 },
+          { key: 'sql', val: 99.6 },
+          { key: 'angular', val: 96.0 },
+          { key: 'tokens', val: 96.0 }
         ],
-        highlight: '<strong>Líder absoluto en ingesta de esquemas masivos.</strong> Mantiene en memoria activa las +100k líneas de código SQL Server (1,167 Stored Procedures) y resuelve referencias cruzadas sin perder precisión de aguja en el pajar.',
-        role: 'Mapeo Masivo de Base de Datos'
+        highlight: {
+          es: '<strong>Líder absoluto en ingesta de esquemas masivos.</strong> Mantiene en memoria activa las +100k líneas de código SQL Server (1,167 Stored Procedures) y resuelve referencias cruzadas sin perder precisión de aguja en el pajar.',
+          en: '<strong>Absolute leader in massive schema ingestion.</strong> Retains +100k lines of SQL Server code (1,167 Stored Procedures) in active memory, resolving cross-references with needle-in-a-haystack precision.'
+        },
+        role: {
+          es: 'Mapeo Masivo de Base de Datos',
+          en: 'Massive Database Mapping'
+        }
       },
       {
         id: 'gpt-sol',
@@ -2424,7 +2773,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'OpenAI · Frontier Architecture (Index: 52)',
         accentColor: '#f59e0b',
         accentGrad: 'linear-gradient(135deg, #f59e0b, #b45309)',
-        badge: 'Razonamiento Autónomo Avanzado',
+        badge: {
+          es: 'Razonamiento Autónomo Avanzado',
+          en: 'Advanced Autonomous Reasoning'
+        },
         scores: {
           global: 97.5,
           rules: 95.2,
@@ -2432,13 +2784,19 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           tokens: 94.5
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 95.2 },
-          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 98.0 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 96.8 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 94.5 }
+          { key: 'rules', val: 95.2 },
+          { key: 'sql', val: 98.0 },
+          { key: 'angular', val: 96.8 },
+          { key: 'tokens', val: 94.5 }
         ],
-        highlight: '<strong>Extraordinaria capacidad deductiva en transacciones complejas.</strong> Resuelve concurrencia pesada y dependencias cruzadas en SQL Server; síntesis arquitectónica de alto calibre en endpoints de backend.',
-        role: 'Razonamiento y Algoritmos Pesados'
+        highlight: {
+          es: '<strong>Extraordinaria capacidad deductiva en transacciones complejas.</strong> Resuelve concurrencia pesada y dependencias cruzadas en SQL Server; síntesis arquitectónica de alto calibre en endpoints de backend.',
+          en: '<strong>Extraordinary deductive power in complex transactions.</strong> Solves heavy concurrency and cross-dependencies in SQL Server; top-tier architectural synthesis across backend endpoints.'
+        },
+        role: {
+          es: 'Razonamiento y Algoritmos Pesados',
+          en: 'Heavy Reasoning and Algorithms'
+        }
       },
       {
         id: 'grok',
@@ -2446,7 +2804,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'xAI · Real-time Compute Cluster (Index: 46)',
         accentColor: '#a855f7',
         accentGrad: 'linear-gradient(135deg, #a855f7, #6d28d9)',
-        badge: 'Cómputo & Grafos de Dependencias',
+        badge: {
+          es: 'Cómputo & Grafos de Dependencias',
+          en: 'Compute & Dependency Graphs'
+        },
         scores: {
           global: 95.2,
           rules: 93.5,
@@ -2454,13 +2815,19 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           tokens: 96.2
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 93.5 },
-          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 94.8 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 94.0 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 96.2 }
+          { key: 'rules', val: 93.5 },
+          { key: 'sql', val: 94.8 },
+          { key: 'angular', val: 94.0 },
+          { key: 'tokens', val: 96.2 }
         ],
-        highlight: '<strong>Velocidad de procesamiento extrema para trazar dependencias.</strong> Analiza rápidamente dependencias cruzadas entre los más de 800k LOC, auditando permisos de seguridad y roles de usuario concurrentes.',
-        role: 'Cálculo Masivo de Grafos'
+        highlight: {
+          es: '<strong>Velocidad de procesamiento extrema para trazar dependencias.</strong> Analiza rápidamente dependencias cruzadas entre los más de 800k LOC, auditando permisos de seguridad y roles de usuario concurrentes.',
+          en: '<strong>Extreme processing speed for dependency tracking.</strong> Rapidly analyzes cross-dependencies across +800k LOC, auditing security permissions and concurrent user roles.'
+        },
+        role: {
+          es: 'Cálculo Masivo de Grafos',
+          en: 'Massive Graph Computation'
+        }
       },
       {
         id: 'deepseek',
@@ -2468,7 +2835,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'DeepSeek · Open Weights Frontier (Index: 39)',
         accentColor: '#3b82f6',
         accentGrad: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-        badge: 'Máxima Eficiencia Costo/Token',
+        badge: {
+          es: 'Máxima Eficiencia Costo/Token',
+          en: 'Maximum Cost/Token Efficiency'
+        },
         scores: {
           global: 93.4,
           rules: 92.0,
@@ -2476,26 +2846,39 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           tokens: 97.5
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 92.0 },
-          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 93.5 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 91.8 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 97.5 }
+          { key: 'rules', val: 92.0 },
+          { key: 'sql', val: 93.5 },
+          { key: 'angular', val: 91.8 },
+          { key: 'tokens', val: 97.5 }
         ],
-        highlight: '<strong>Cadena de pensamiento transparente y altamente optimizada.</strong> Valida reglas de negocio complejas con un ratio de consumo computacional inmejorable, ideal para despliegues locales y entornos offline.',
-        role: 'Verificación On-Premise'
+        highlight: {
+          es: '<strong>Cadena de pensamiento transparente y altamente optimizada.</strong> Valida reglas de negocio complejas con un ratio de consumo computacional inmejorable, ideal para despliegues locales y entornos offline.',
+          en: '<strong>Transparent, highly-optimized chain of thought.</strong> Validates complex business logic with an unbeatable compute-consumption ratio, ideal for on-premise and offline deployments.'
+        },
+        role: {
+          es: 'Verificación On-Premise',
+          en: 'On-Premise Verification'
+        }
       }
     ];
 
+    const metricLabels = {
+      rules: { es: 'Adherencia a AGENTS.md', en: 'AGENTS.md Adherence' },
+      sql: { es: 'Lógica SQL Server (+100K LOC)', en: 'SQL Server Logic (+100K LOC)' },
+      angular: { es: 'Angular 18 OnPush & Signals', en: 'Angular 18 OnPush & Signals' },
+      tokens: { es: 'Eficiencia & Cero Desborde', en: 'Efficiency & Zero Overflow' }
+    };
+
     const filterLabels = {
-      global: 'Score SGI',
-      rules: 'Reglas AGENTS',
-      sql: 'Lógica SQL (+100K)',
-      tokens: 'Eficiencia'
+      global: { es: 'Score SGI', en: 'SGI Score' },
+      rules: { es: 'Reglas AGENTS', en: 'AGENTS Rules' },
+      sql: { es: 'Lógica SQL (+100K)', en: 'SQL Logic (+100K)' },
+      tokens: { es: 'Eficiencia', en: 'Efficiency' }
     };
 
     let activeBenchmarkFilter = 'global';
 
-    function switchBenchmark(filterKey) {
+    function switchBenchmark(filterKey = activeBenchmarkFilter) {
       activeBenchmarkFilter = filterKey;
       // Update Filter buttons UI
       const filterBtns = document.querySelectorAll('.bench-filter-btn');
@@ -2524,11 +2907,12 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           const barStyle = isHighlightedMetric
             ? `background: ${model.accentGrad}; box-shadow: 0 0 12px ${model.accentColor};`
             : `background: rgba(255, 255, 255, 0.2);`;
+          const labelText = metricLabels[m.key] ? (metricLabels[m.key][currentLang] || metricLabels[m.key].es) : m.key;
 
           metricsHtml += `
             <div class="bench-metric-item">
               <div class="bench-metric-label-row">
-                <span style="${isHighlightedMetric ? 'color:var(--text-primary); font-weight:600;' : ''}">${m.label}</span>
+                <span style="${isHighlightedMetric ? 'color:var(--text-primary); font-weight:600;' : ''}">${labelText}</span>
                 <span class="bench-metric-val" style="${isHighlightedMetric ? 'color:' + model.accentColor : ''}">${m.val}%</span>
               </div>
               <div class="bench-bar-track">
@@ -2537,6 +2921,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
             </div>
           `;
         });
+
+        const badgeText = typeof model.badge === 'object' ? (model.badge[currentLang] || model.badge.es) : model.badge;
+        const highlightText = typeof model.highlight === 'object' ? (model.highlight[currentLang] || model.highlight.es) : model.highlight;
+        const filterLabelText = filterLabels[filterKey] ? (filterLabels[filterKey][currentLang] || filterLabels[filterKey].es) : filterKey;
 
         card.innerHTML = `
           <div class="bench-card-glow" style="background: radial-gradient(circle, ${model.accentColor}, transparent 70%);"></div>
@@ -2550,12 +2938,12 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
               </div>
               <div class="bench-score-wrap">
                 <span class="bench-score-badge" style="color:${model.accentColor}">${currentScore}</span>
-                <span class="bench-score-lbl">${filterLabels[filterKey]}</span>
+                <span class="bench-score-lbl">${filterLabelText}</span>
               </div>
             </div>
             
             <span class="bench-badge-tag">
-              ${model.badge}
+              ${badgeText}
             </span>
 
             <div class="bench-metrics-list">
@@ -2564,7 +2952,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           </div>
 
           <div class="bench-highlight-box">
-            ${model.highlight}
+            ${highlightText}
           </div>
         `;
 
@@ -2602,16 +2990,23 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
     function showToast(msg) {
       const toast = document.getElementById('toast');
       const toastMsg = document.getElementById('toast-msg');
+      if (!toast || !toastMsg) return;
       toastMsg.textContent = msg;
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
     // Copy Article Link
-    document.getElementById('copy-article-btn').addEventListener('click', () => {
-      navigator.clipboard.writeText(window.location.href);
-      showToast('¡Enlace del artículo copiado!');
-    });
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href);
+        showToast(translations[currentLang].toast_link_copied);
+      });
+    }
+
+    // Initialize Language from localStorage if present
+    const savedLang = localStorage.getItem('sgi_lang') || 'es';
+    setLanguage(savedLang, true);
   </script>
 </body>
 </html>
