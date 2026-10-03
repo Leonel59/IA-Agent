@@ -203,7 +203,7 @@
     body:not(.theme-light) .icon-moon { display: none; }
     body:not(.theme-light) .icon-sun { display: block; }
 
-    /* Apple / macOS Scroll Animations (Smooth on Mobile & Desktop) */
+    /* Apple / macOS Scroll Animations */
     .apple-reveal {
       opacity: 0;
       transform: translateY(40px) scale(0.98);
@@ -223,7 +223,7 @@
 
     @media (max-width: 768px) {
       .apple-reveal {
-        transform: translateY(24px) scale(0.99);
+        transform: translateY(22px) scale(0.99);
         transition: opacity 0.6s var(--apple-ease), transform 0.6s var(--apple-ease);
       }
     }
@@ -336,7 +336,7 @@
     }
 
     /* ==========================================================
-       INTERACTIVE VIDEO PLAYER COMPONENTS (MINIMAL & ULTRA RESPONSIVE)
+       INTERACTIVE VIDEO PLAYER COMPONENTS (WIDESCREEN ASPECT RATIO)
        ========================================================== */
     .video-showcase-container {
       max-width: 1140px;
@@ -411,28 +411,16 @@
       50% { opacity: 0.4; transform: scale(0.8); }
     }
 
-    /* Screen Wrap - Responsive sizing */
+    /* Screen Wrap - Full Widescreen Proportion on all devices */
     .video-screen-wrap {
       position: relative;
       width: 100%;
-      height: 520px;
+      aspect-ratio: 1140 / 520;
       background: #07090e;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    @media (max-width: 900px) {
-      .video-screen-wrap {
-        height: 540px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .video-screen-wrap {
-        height: 580px;
-      }
     }
 
     .interactive-canvas {
@@ -442,7 +430,7 @@
       cursor: pointer;
     }
 
-    /* Minimalist Video Controls (Removed the clunky 10s Loop pill) */
+    /* Minimalist Video Controls */
     .video-controls-bar {
       background: rgba(14, 15, 20, 0.95);
       border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -499,26 +487,6 @@
       min-width: 85px;
       text-align: right;
       flex-shrink: 0;
-    }
-
-    .download-clip-btn {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #94a3b8;
-      font-size: 0.72rem;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-
-    .download-clip-btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
     }
 
     /* Section Container */
@@ -932,10 +900,15 @@
       .comp-box { padding: 1.5rem; }
       .bento-card { padding: 1.5rem; border-radius: 20px; }
       .quote-section { padding: 4.5rem 1rem; }
-      .video-chrome-bar { padding: 0.65rem 0.9rem; }
-      .video-controls-bar { padding: 0.6rem 0.9rem; gap: 0.6rem; }
-      .video-title-wrap span:first-of-type { font-size: 0.72rem; }
-      .download-clip-btn { font-size: 0.68rem; padding: 0.2rem 0.5rem; }
+      .section-wrap { margin: 3.5rem auto; padding: 0 0.85rem; }
+      .video-showcase-container { border-radius: 18px; }
+      .video-chrome-bar { padding: 0.55rem 0.8rem; gap: 0.5rem; }
+      .video-controls-bar { padding: 0.55rem 0.8rem; gap: 0.5rem; }
+      .video-title-wrap { gap: 0.4rem; font-size: 0.72rem; }
+      .video-title-wrap span:first-of-type { font-size: 0.7rem; max-width: 145px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .video-badge-live { font-size: 0.6rem; padding: 0.1rem 0.45rem; }
+      .video-time-text { font-size: 0.68rem; min-width: 72px; }
+      .ctrl-btn { width: 28px; height: 28px; }
       #toast { left: 1rem; right: 1rem; bottom: 1rem; justify-content: center; }
     }
   </style>
@@ -1017,7 +990,7 @@
       </div>
 
       <!-- ==========================================================
-           VIDEO 1: CURSOR AI AGENT LIVE SESSION (ADAPTIVE MOBILE/DESKTOP)
+           VIDEO 1: CURSOR AI AGENT LIVE SESSION (FULL WIDESCREEN ON ALL DEVICES)
            ========================================================== -->
       <div class="video-showcase-container apple-reveal" id="hero-media">
         <!-- Mac Chrome Header -->
@@ -1032,20 +1005,15 @@
             <span>cursor-ai-agent-session.ts</span>
             <span class="video-badge-live"><span class="pulse-dot"></span> LIVE LOOP</span>
           </div>
-          <div>
-            <button class="download-clip-btn" onclick="downloadClip(1)" title="Guardar video .webm para LinkedIn">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-              Clip 10s
-            </button>
-          </div>
+          <div></div>
         </div>
 
-        <!-- Adaptive Canvas Screen -->
+        <!-- 60FPS Widescreen Canvas -->
         <div class="video-screen-wrap">
-          <canvas id="canvas-video-1" class="interactive-canvas" title="Haz clic para Pausar/Reanudar"></canvas>
+          <canvas id="canvas-video-1" class="interactive-canvas" width="1140" height="520" title="Haz clic para Pausar/Reanudar"></canvas>
         </div>
 
-        <!-- Controls Bar (Clean minimal style, no loop badge) -->
+        <!-- Controls Bar -->
         <div class="video-controls-bar">
           <button class="ctrl-btn" id="play-pause-btn-1" onclick="togglePlay(1)" title="Pausar / Reproducir">
             <svg id="play-icon-1" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
@@ -1181,7 +1149,7 @@
     </section>
 
     <!-- ==========================================================
-         VIDEO 2: CONTEXT ARCHITECTURE PIPELINE FLOW (ADAPTIVE MOBILE/DESKTOP)
+         VIDEO 2: CONTEXT ARCHITECTURE PIPELINE FLOW (FULL WIDESCREEN ON ALL DEVICES)
          ========================================================== -->
     <section class="section-wrap">
       <div class="video-showcase-container apple-reveal" id="arch-media">
@@ -1197,20 +1165,15 @@
             <span>context-pipeline-flow.mp4</span>
             <span class="video-badge-live"><span class="pulse-dot"></span> LIVE ARCHITECTURE</span>
           </div>
-          <div>
-            <button class="download-clip-btn" onclick="downloadClip(2)" title="Guardar video .webm para LinkedIn">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-              Clip 10s
-            </button>
-          </div>
+          <div></div>
         </div>
 
         <!-- 60FPS Architecture Stream Canvas -->
         <div class="video-screen-wrap">
-          <canvas id="canvas-video-2" class="interactive-canvas" title="Haz clic para Pausar/Reanudar"></canvas>
+          <canvas id="canvas-video-2" class="interactive-canvas" width="1140" height="520" title="Haz clic para Pausar/Reanudar"></canvas>
         </div>
 
-        <!-- Controls Bar (Clean minimal style, no loop badge) -->
+        <!-- Controls Bar -->
         <div class="video-controls-bar">
           <button class="ctrl-btn" id="play-pause-btn-2" onclick="togglePlay(2)" title="Pausar / Reproducir">
             <svg id="play-icon-2" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
@@ -1339,7 +1302,7 @@
     });
 
     // ==========================================
-    // 3. APPLE / MACOS SCROLL REVEAL OBSERVER (OPTIMIZED FOR MOBILE)
+    // 3. APPLE / MACOS SCROLL REVEAL OBSERVER
     // ==========================================
     const revealElements = document.querySelectorAll('.apple-reveal');
     const isMobileDevice = window.innerWidth <= 768;
@@ -1350,7 +1313,6 @@
           entry.target.classList.add('is-visible');
         } else {
           const rect = entry.target.getBoundingClientRect();
-          // Reset smoothly when scrolled far below viewport
           if (rect.top > window.innerHeight + 80) {
             entry.target.classList.remove('is-visible');
           }
@@ -1399,35 +1361,23 @@
     }
 
     // ------------------------------------------
-    // DYNAMIC CANVAS RESIZING ENGINE (RESPONSIVE)
+    // FULL WIDESCREEN CANVASES (1140x520 ON ALL DEVICES)
     // ------------------------------------------
     const canvas1 = document.getElementById('canvas-video-1');
     const ctx1 = canvas1.getContext('2d');
     const canvas2 = document.getElementById('canvas-video-2');
     const ctx2 = canvas2.getContext('2d');
 
-    function resizeCanvasResolution() {
-      const isMobile = window.innerWidth <= 768;
-      const targetW = isMobile ? 640 : 1140;
-      const targetH = isMobile ? (window.innerWidth <= 500 ? 580 : 540) : 520;
-
-      if (canvas1.width !== targetW || canvas1.height !== targetH) {
-        canvas1.width = targetW;
-        canvas1.height = targetH;
-      }
-      if (canvas2.width !== targetW || canvas2.height !== targetH) {
-        canvas2.width = targetW;
-        canvas2.height = targetH;
-      }
-    }
-    window.addEventListener('resize', resizeCanvasResolution);
-    resizeCanvasResolution();
+    canvas1.width = 1140;
+    canvas1.height = 520;
+    canvas2.width = 1140;
+    canvas2.height = 520;
 
     canvas1.addEventListener('click', () => togglePlay(1));
     canvas2.addEventListener('click', () => togglePlay(2));
 
     // ------------------------------------------
-    // VIDEO 1 CANVAS RENDERER: CURSOR AI AGENT
+    // VIDEO 1 CANVAS RENDERER: CURSOR AI AGENT (FULL VIEW)
     // ------------------------------------------
     function renderVideo1(now) {
       const state = videoStates[1];
@@ -1439,9 +1389,8 @@
       updateScrubberUI(1);
 
       const t = state.currentTime;
-      const w = canvas1.width;
-      const h = canvas1.height;
-      const isMobile = w <= 768;
+      const w = 1140;
+      const h = 520;
 
       // Dark background with gradient
       const bgGrad = ctx1.createLinearGradient(0, 0, w, h);
@@ -1450,261 +1399,160 @@
       ctx1.fillStyle = bgGrad;
       ctx1.fillRect(0, 0, w, h);
 
-      if (!isMobile) {
-        // ================= DESKTOP 3-COLUMN VIEW =================
-        const explorerW = 280;
-        ctx1.fillStyle = 'rgba(15, 20, 32, 0.7)';
-        ctx1.fillRect(0, 0, explorerW, h);
-        ctx1.strokeStyle = 'rgba(255, 255, 255, 0.06)';
-        ctx1.strokeRect(0, 0, explorerW, h);
+      // Explorer Column
+      const explorerW = 280;
+      ctx1.fillStyle = 'rgba(15, 20, 32, 0.7)';
+      ctx1.fillRect(0, 0, explorerW, h);
+      ctx1.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+      ctx1.strokeRect(0, 0, explorerW, h);
 
-        ctx1.font = '600 12px "JetBrains Mono", monospace';
-        ctx1.fillStyle = '#64748b';
-        ctx1.fillText('EXPLORER  •  WORKSPACE', 24, 38);
+      ctx1.font = '600 12px "JetBrains Mono", monospace';
+      ctx1.fillStyle = '#64748b';
+      ctx1.fillText('EXPLORER  •  WORKSPACE', 24, 38);
 
-        const files = [
-          { name: '📁 .agents/skills/angular', active: t > 2 },
-          { name: '📄 AGENTS.md', active: t > 1.5 },
-          { name: '📁 frontend/src/app', active: t > 0.5 },
-          { name: '   📄 solicitudes.component.ts', active: t > 4 },
-          { name: '   📄 solicitudes.service.ts', active: false },
-          { name: '📁 server/src', active: false },
-          { name: '   📄 inventario-bd.json', active: t > 3 }
-        ];
+      const files = [
+        { name: '📁 .agents/skills/angular', active: t > 2 },
+        { name: '📄 AGENTS.md', active: t > 1.5 },
+        { name: '📁 frontend/src/app', active: t > 0.5 },
+        { name: '   📄 solicitudes.component.ts', active: t > 4 },
+        { name: '   📄 solicitudes.service.ts', active: false },
+        { name: '📁 server/src', active: false },
+        { name: '   📄 inventario-bd.json', active: t > 3 }
+      ];
 
-        files.forEach((f, idx) => {
-          const y = 80 + idx * 34;
-          if (f.active) {
-            ctx1.fillStyle = 'rgba(0, 240, 255, 0.08)';
-            ctx1.fillRect(10, y - 18, explorerW - 20, 26);
-            ctx1.fillStyle = '#38bdf8';
-          } else {
-            ctx1.fillStyle = '#94a3b8';
-          }
-          ctx1.font = '12px "JetBrains Mono", monospace';
-          ctx1.fillText(f.name, 24, y);
-        });
-
-        // Scanning Laser Bar (0 to 3s)
-        if (t < 3) {
-          const scanY = 60 + (t / 3) * 260;
-          const scanGrad = ctx1.createLinearGradient(0, scanY - 4, explorerW, scanY + 4);
-          scanGrad.addColorStop(0, 'rgba(0, 240, 255, 0)');
-          scanGrad.addColorStop(0.5, 'rgba(0, 240, 255, 0.9)');
-          scanGrad.addColorStop(1, 'rgba(0, 240, 255, 0)');
-          ctx1.fillStyle = scanGrad;
-          ctx1.fillRect(10, scanY - 2, explorerW - 20, 4);
-
+      files.forEach((f, idx) => {
+        const y = 80 + idx * 34;
+        if (f.active) {
+          ctx1.fillStyle = 'rgba(0, 240, 255, 0.08)';
+          ctx1.fillRect(10, y - 18, explorerW - 20, 26);
           ctx1.fillStyle = '#38bdf8';
-          ctx1.font = '10px "JetBrains Mono", monospace';
-          ctx1.fillText('Indexing +800,000 LOC...', 24, 320);
-        }
-
-        // Code Editor Column
-        const codeX = explorerW + 15;
-        const codeW = 510;
-        ctx1.font = '600 13px "JetBrains Mono", monospace';
-        ctx1.fillStyle = '#38bdf8';
-        ctx1.fillText('solicitudes.component.ts', codeX + 15, 36);
-
-        const codeLines = [
-          "@Component({",
-          "  selector: 'sgi-solicitudes',",
-          "  standalone: true,",
-          "  changeDetection: ChangeDetectionStrategy.OnPush,",
-          "  imports: [CommonModule, TableModule],",
-          "  template: `<p-table [value]='solicitudes()'></p-table>`",
-          "})",
-          "export class SolicitudesComponent {",
-          "  private readonly svc = inject(SolicitudesService);",
-          "  readonly solicitudes = toSignal(this.svc.getActivas());",
-          "}"
-        ];
-
-        const visibleLines = Math.min(codeLines.length, Math.floor((t / 7) * codeLines.length));
-        ctx1.font = '12.5px "JetBrains Mono", monospace';
-        for (let i = 0; i < visibleLines; i++) {
-          const lineY = 75 + i * 26;
-          ctx1.fillStyle = '#475569';
-          ctx1.fillText(String(i + 1).padStart(2, '0'), codeX + 10, lineY);
-
-          if (codeLines[i].includes('@Component') || codeLines[i].includes('export class')) {
-            ctx1.fillStyle = '#ec4899';
-          } else if (codeLines[i].includes('ChangeDetectionStrategy') || codeLines[i].includes('inject')) {
-            ctx1.fillStyle = '#38bdf8';
-          } else if (codeLines[i].includes('toSignal')) {
-            ctx1.fillStyle = '#a855f7';
-          } else {
-            ctx1.fillStyle = '#e2e8f0';
-          }
-          ctx1.fillText(codeLines[i], codeX + 45, lineY);
-        }
-
-        // Right Column: Cursor AI Agent Chat
-        const chatX = codeX + codeW + 10;
-        const chatW = w - chatX - 20;
-
-        ctx1.fillStyle = 'rgba(15, 20, 32, 0.85)';
-        ctx1.fillRect(chatX, 15, chatW, h - 30);
-        ctx1.strokeStyle = 'rgba(0, 240, 255, 0.2)';
-        ctx1.strokeRect(chatX, 15, chatW, h - 30);
-
-        ctx1.font = '700 13px "Plus Jakarta Sans", sans-serif';
-        ctx1.fillStyle = '#f8fafc';
-        ctx1.fillText('Cursor Composer', chatX + 40, 45);
-
-        ctx1.strokeStyle = '#00f0ff';
-        ctx1.lineWidth = 1.5;
-        ctx1.strokeRect(chatX + 18, 33, 14, 14);
-
-        if (t > 1.5) {
-          ctx1.fillStyle = 'rgba(0, 240, 255, 0.15)';
-          ctx1.fillRect(chatX + 18, 65, 95, 22);
-          ctx1.fillStyle = '#38bdf8';
-          ctx1.font = '10px "JetBrains Mono", monospace';
-          ctx1.fillText('@AGENTS.md', chatX + 26, 80);
-        }
-
-        if (t > 2.5) {
-          ctx1.fillStyle = 'rgba(168, 85, 247, 0.15)';
-          ctx1.fillRect(chatX + 120, 65, 145, 22);
-          ctx1.fillStyle = '#c084fc';
-          ctx1.font = '10px "JetBrains Mono", monospace';
-          ctx1.fillText('@skills/angular-dev', chatX + 128, 80);
-        }
-
-        if (t > 3) {
-          ctx1.fillStyle = '#94a3b8';
-          ctx1.font = '11px "Plus Jakarta Sans", sans-serif';
-          ctx1.fillText('Prompt: Optimizar vista de Solicitudes SGI', chatX + 18, 120);
-
-          ctx1.fillStyle = '#38bdf8';
-          ctx1.fillText('● Agente razonando...', chatX + 18, 150);
-
-          ctx1.fillStyle = '#cbd5e1';
-          ctx1.font = '11px "JetBrains Mono", monospace';
-          const steps = [
-            '1. Leyendo reglas de AGENTS.md',
-            '2. Activando OnPush ChangeDetection',
-            '3. Mapeando Signals reactivas',
-            '4. Verificando accesibilidad WCAG 2.2'
-          ];
-          const stepCount = Math.min(steps.length, Math.floor((t - 3) * 1.5));
-          for (let s = 0; s < stepCount; s++) {
-            ctx1.fillText('✔ ' + steps[s], chatX + 22, 185 + s * 28);
-          }
-        }
-
-        if (t > 8) {
-          ctx1.fillStyle = 'rgba(34, 197, 94, 0.2)';
-          ctx1.fillRect(chatX + 18, 340, chatW - 36, 48);
-          ctx1.strokeStyle = '#22c55e';
-          ctx1.strokeRect(chatX + 18, 340, chatW - 36, 48);
-
-          ctx1.fillStyle = '#4ade80';
-          ctx1.font = '700 12px "JetBrains Mono", monospace';
-          ctx1.fillText('✔ REGLAS AUDITADAS: 0 ERRORES', chatX + 32, 368);
-        }
-
-      } else {
-        // ================= MOBILE OPTIMIZED VIEW (CRISP & LEGIBLE) =================
-        // Top breadcrumb banner
-        ctx1.fillStyle = 'rgba(15, 20, 32, 0.9)';
-        ctx1.fillRect(0, 0, w, 65);
-        ctx1.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-        ctx1.strokeRect(0, 0, w, 65);
-
-        ctx1.font = '700 16px "JetBrains Mono", monospace';
-        ctx1.fillStyle = '#38bdf8';
-        ctx1.fillText('solicitudes.component.ts', 24, 38);
-
-        ctx1.font = '600 12px "JetBrains Mono", monospace';
-        ctx1.fillStyle = '#64748b';
-        ctx1.fillText('Angular 18 & TypeScript', w - 195, 38);
-
-        // Code Editor in Large, Crisp Mobile Typography
-        const codeLines = [
-          "@Component({",
-          "  selector: 'sgi-solicitudes',",
-          "  standalone: true,",
-          "  changeDetection: OnPush,",
-          "  imports: [CommonModule, TableModule]",
-          "})",
-          "export class SolicitudesComponent {",
-          "  private svc = inject(SolicitudesSvc);",
-          "  solicitudes = toSignal(this.svc.get());",
-          "}"
-        ];
-
-        const visibleLines = Math.min(codeLines.length, Math.floor((t / 6.5) * codeLines.length));
-        ctx1.font = '500 16px "JetBrains Mono", monospace';
-
-        for (let i = 0; i < visibleLines; i++) {
-          const lineY = 105 + i * 30;
-          ctx1.fillStyle = '#475569';
-          ctx1.fillText(String(i + 1).padStart(2, '0'), 20, lineY);
-
-          if (codeLines[i].includes('@Component') || codeLines[i].includes('export class')) {
-            ctx1.fillStyle = '#ec4899';
-          } else if (codeLines[i].includes('OnPush') || codeLines[i].includes('inject')) {
-            ctx1.fillStyle = '#38bdf8';
-          } else if (codeLines[i].includes('toSignal')) {
-            ctx1.fillStyle = '#c084fc';
-          } else {
-            ctx1.fillStyle = '#f1f5f9';
-          }
-          ctx1.fillText(codeLines[i], 60, lineY);
-        }
-
-        // Mobile Floating Composer Card at Bottom
-        const compY = 415;
-        const compH = h - compY - 15;
-        ctx1.fillStyle = 'rgba(15, 23, 42, 0.96)';
-        ctx1.strokeStyle = 'rgba(0, 240, 255, 0.35)';
-        ctx1.lineWidth = 1.5;
-        ctx1.beginPath();
-        ctx1.roundRect(15, compY, w - 30, compH, 18);
-        ctx1.fill();
-        ctx1.stroke();
-
-        // Composer Header & Chips
-        ctx1.font = '700 14px "Plus Jakarta Sans", sans-serif';
-        ctx1.fillStyle = '#ffffff';
-        ctx1.fillText('Cursor Composer', 50, compY + 30);
-
-        ctx1.strokeStyle = '#00f0ff';
-        ctx1.strokeRect(30, compY + 18, 12, 12);
-
-        // Tags
-        ctx1.fillStyle = 'rgba(0, 240, 255, 0.18)';
-        ctx1.fillRect(w - 230, compY + 14, 95, 24);
-        ctx1.fillStyle = '#38bdf8';
-        ctx1.font = '600 11px "JetBrains Mono", monospace';
-        ctx1.fillText('@AGENTS.md', w - 222, compY + 30);
-
-        ctx1.fillStyle = 'rgba(168, 85, 247, 0.18)';
-        ctx1.fillRect(w - 125, compY + 14, 100, 24);
-        ctx1.fillStyle = '#c084fc';
-        ctx1.fillText('@skills/a11y', w - 118, compY + 30);
-
-        // Agent status / Verification badge
-        if (t < 7.5) {
-          ctx1.fillStyle = '#38bdf8';
-          ctx1.font = '600 13px "JetBrains Mono", monospace';
-          ctx1.fillText('● Agente razonando: Reglas de arquitectura activas', 30, compY + 70);
-          ctx1.fillStyle = '#94a3b8';
-          ctx1.font = '12px "JetBrains Mono", monospace';
-          ctx1.fillText('Presupuesto <1500 líneas  •  WCAG 2.2 AA validado', 30, compY + 95);
         } else {
-          ctx1.fillStyle = 'rgba(34, 197, 94, 0.25)';
-          ctx1.fillRect(25, compY + 52, w - 50, 48);
-          ctx1.strokeStyle = '#22c55e';
-          ctx1.strokeRect(25, compY + 52, w - 50, 48);
-
-          ctx1.fillStyle = '#4ade80';
-          ctx1.font = '700 14px "JetBrains Mono", monospace';
-          ctx1.fillText('✔ REGLAS AUDITADAS: 0 ERRORES', 45, compY + 82);
+          ctx1.fillStyle = '#94a3b8';
         }
+        ctx1.font = '12px "JetBrains Mono", monospace';
+        ctx1.fillText(f.name, 24, y);
+      });
+
+      // Scanning Laser Bar (0 to 3s)
+      if (t < 3) {
+        const scanY = 60 + (t / 3) * 260;
+        const scanGrad = ctx1.createLinearGradient(0, scanY - 4, explorerW, scanY + 4);
+        scanGrad.addColorStop(0, 'rgba(0, 240, 255, 0)');
+        scanGrad.addColorStop(0.5, 'rgba(0, 240, 255, 0.9)');
+        scanGrad.addColorStop(1, 'rgba(0, 240, 255, 0)');
+        ctx1.fillStyle = scanGrad;
+        ctx1.fillRect(10, scanY - 2, explorerW - 20, 4);
+
+        ctx1.fillStyle = '#38bdf8';
+        ctx1.font = '10px "JetBrains Mono", monospace';
+        ctx1.fillText('Indexing +800,000 LOC...', 24, 320);
+      }
+
+      // Middle Column: TypeScript Code Editor
+      const codeX = explorerW + 15;
+      const codeW = 510;
+      ctx1.font = '600 13px "JetBrains Mono", monospace';
+      ctx1.fillStyle = '#38bdf8';
+      ctx1.fillText('solicitudes.component.ts', codeX + 15, 36);
+
+      const codeLines = [
+        "@Component({",
+        "  selector: 'sgi-solicitudes',",
+        "  standalone: true,",
+        "  changeDetection: ChangeDetectionStrategy.OnPush,",
+        "  imports: [CommonModule, TableModule],",
+        "  template: `<p-table [value]='solicitudes()'></p-table>`",
+        "})",
+        "export class SolicitudesComponent {",
+        "  private readonly svc = inject(SolicitudesService);",
+        "  readonly solicitudes = toSignal(this.svc.getActivas());",
+        "}"
+      ];
+
+      const visibleLines = Math.min(codeLines.length, Math.floor((t / 7) * codeLines.length));
+      ctx1.font = '12.5px "JetBrains Mono", monospace';
+      for (let i = 0; i < visibleLines; i++) {
+        const lineY = 75 + i * 26;
+        ctx1.fillStyle = '#475569';
+        ctx1.fillText(String(i + 1).padStart(2, '0'), codeX + 10, lineY);
+
+        if (codeLines[i].includes('@Component') || codeLines[i].includes('export class')) {
+          ctx1.fillStyle = '#ec4899';
+        } else if (codeLines[i].includes('ChangeDetectionStrategy') || codeLines[i].includes('inject')) {
+          ctx1.fillStyle = '#38bdf8';
+        } else if (codeLines[i].includes('toSignal')) {
+          ctx1.fillStyle = '#a855f7';
+        } else {
+          ctx1.fillStyle = '#e2e8f0';
+        }
+        ctx1.fillText(codeLines[i], codeX + 45, lineY);
+      }
+
+      // Right Column: Cursor AI Agent Chat & Composer
+      const chatX = codeX + codeW + 10;
+      const chatW = w - chatX - 20;
+
+      ctx1.fillStyle = 'rgba(15, 20, 32, 0.85)';
+      ctx1.fillRect(chatX, 15, chatW, h - 30);
+      ctx1.strokeStyle = 'rgba(0, 240, 255, 0.2)';
+      ctx1.strokeRect(chatX, 15, chatW, h - 30);
+
+      // Cursor Cube Logo in Chat
+      ctx1.font = '700 13px "Plus Jakarta Sans", sans-serif';
+      ctx1.fillStyle = '#f8fafc';
+      ctx1.fillText('Cursor Composer', chatX + 40, 45);
+
+      ctx1.strokeStyle = '#00f0ff';
+      ctx1.lineWidth = 1.5;
+      ctx1.strokeRect(chatX + 18, 33, 14, 14);
+
+      if (t > 1.5) {
+        ctx1.fillStyle = 'rgba(0, 240, 255, 0.15)';
+        ctx1.fillRect(chatX + 18, 65, 95, 22);
+        ctx1.fillStyle = '#38bdf8';
+        ctx1.font = '10px "JetBrains Mono", monospace';
+        ctx1.fillText('@AGENTS.md', chatX + 26, 80);
+      }
+
+      if (t > 2.5) {
+        ctx1.fillStyle = 'rgba(168, 85, 247, 0.15)';
+        ctx1.fillRect(chatX + 120, 65, 145, 22);
+        ctx1.fillStyle = '#c084fc';
+        ctx1.font = '10px "JetBrains Mono", monospace';
+        ctx1.fillText('@skills/angular-dev', chatX + 128, 80);
+      }
+
+      if (t > 3) {
+        ctx1.fillStyle = '#94a3b8';
+        ctx1.font = '11px "Plus Jakarta Sans", sans-serif';
+        ctx1.fillText('Prompt: Optimizar vista de Solicitudes SGI', chatX + 18, 120);
+
+        ctx1.fillStyle = '#38bdf8';
+        ctx1.fillText('● Agente razonando...', chatX + 18, 150);
+
+        ctx1.fillStyle = '#cbd5e1';
+        ctx1.font = '11px "JetBrains Mono", monospace';
+        const steps = [
+          '1. Leyendo reglas de AGENTS.md',
+          '2. Activando OnPush ChangeDetection',
+          '3. Mapeando Signals reactivas',
+          '4. Verificando accesibilidad WCAG 2.2'
+        ];
+        const stepCount = Math.min(steps.length, Math.floor((t - 3) * 1.5));
+        for (let s = 0; s < stepCount; s++) {
+          ctx1.fillText('✔ ' + steps[s], chatX + 22, 185 + s * 28);
+        }
+      }
+
+      if (t > 8) {
+        ctx1.fillStyle = 'rgba(34, 197, 94, 0.2)';
+        ctx1.fillRect(chatX + 18, 340, chatW - 36, 48);
+        ctx1.strokeStyle = '#22c55e';
+        ctx1.strokeRect(chatX + 18, 340, chatW - 36, 48);
+
+        ctx1.fillStyle = '#4ade80';
+        ctx1.font = '700 12px "JetBrains Mono", monospace';
+        ctx1.fillText('✔ REGLAS AUDITADAS: 0 ERRORES', chatX + 32, 368);
       }
 
       requestAnimationFrame(renderVideo1);
@@ -1712,7 +1560,7 @@
     requestAnimationFrame(renderVideo1);
 
     // ------------------------------------------
-    // VIDEO 2 CANVAS RENDERER: ARCHITECTURE PIPELINE
+    // VIDEO 2 CANVAS RENDERER: ARCHITECTURE PIPELINE (FULL VIEW)
     // ------------------------------------------
     function renderVideo2(now) {
       const state = videoStates[2];
@@ -1724,9 +1572,8 @@
       updateScrubberUI(2);
 
       const t = state.currentTime;
-      const w = canvas2.width;
-      const h = canvas2.height;
-      const isMobile = w <= 768;
+      const w = 1140;
+      const h = 520;
 
       // Dark radial background
       const bgGrad = ctx2.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
@@ -1735,180 +1582,89 @@
       ctx2.fillStyle = bgGrad;
       ctx2.fillRect(0, 0, w, h);
 
-      if (!isMobile) {
-        // ================= DESKTOP 4-CARD PIPELINE =================
-        const cards = [
-          { title: '1. AGENTS.md', sub: 'Constitución & Reglas', desc: 'Presupuesto de tokens, seguridad, Windows/PS', x: 50, active: t >= 0 && t < 3 },
-          { title: '2. Skills Modulares', sub: '.agents/skills/', desc: 'Angular 18, WCAG 2.2, diseño sobrio', x: 320, active: t >= 2.5 && t < 5.5 },
-          { title: '3. Data & Schemas', sub: 'SQL Server Maps', desc: '30k+ líneas, SPs, roles y permisos', x: 590, active: t >= 5.0 && t < 8.0 },
-          { title: '4. Cursor AI Engine', sub: 'Composer & Indexing', desc: 'Output seguro, atómico y verificado', x: 860, active: t >= 7.5 }
-        ];
+      const cards = [
+        { title: '1. AGENTS.md', sub: 'Constitución & Reglas', desc: 'Presupuesto de tokens, seguridad, Windows/PS', x: 50, active: t >= 0 && t < 3 },
+        { title: '2. Skills Modulares', sub: '.agents/skills/', desc: 'Angular 18, WCAG 2.2, diseño sobrio', x: 320, active: t >= 2.5 && t < 5.5 },
+        { title: '3. Data & Schemas', sub: 'SQL Server Maps', desc: '30k+ líneas, SPs, roles y permisos', x: 590, active: t >= 5.0 && t < 8.0 },
+        { title: '4. Cursor AI Engine', sub: 'Composer & Indexing', desc: 'Output seguro, atómico y verificado', x: 860, active: t >= 7.5 }
+      ];
 
-        const cardW = 230;
-        const cardH = 260;
-        const cardY = 130;
+      const cardW = 230;
+      const cardH = 260;
+      const cardY = 130;
 
-        ctx2.lineWidth = 3;
-        for (let i = 0; i < cards.length - 1; i++) {
-          const startX = cards[i].x + cardW;
-          const endX = cards[i + 1].x;
-          const lineY = cardY + cardH / 2;
+      ctx2.lineWidth = 3;
+      for (let i = 0; i < cards.length - 1; i++) {
+        const startX = cards[i].x + cardW;
+        const endX = cards[i + 1].x;
+        const lineY = cardY + cardH / 2;
 
-          ctx2.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-          ctx2.beginPath();
-          ctx2.moveTo(startX, lineY);
-          ctx2.lineTo(endX, lineY);
-          ctx2.stroke();
+        ctx2.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx2.beginPath();
+        ctx2.moveTo(startX, lineY);
+        ctx2.lineTo(endX, lineY);
+        ctx2.stroke();
 
-          const particleProgress = (t * 1.5 + i * 0.7) % 1;
-          const px = startX + (endX - startX) * particleProgress;
-          ctx2.fillStyle = '#00f0ff';
-          ctx2.beginPath();
-          ctx2.arc(px, lineY, 5, 0, Math.PI * 2);
-          ctx2.fill();
+        const particleProgress = (t * 1.5 + i * 0.7) % 1;
+        const px = startX + (endX - startX) * particleProgress;
+        ctx2.fillStyle = '#00f0ff';
+        ctx2.beginPath();
+        ctx2.arc(px, lineY, 5, 0, Math.PI * 2);
+        ctx2.fill();
+      }
+
+      cards.forEach((card, idx) => {
+        ctx2.save();
+        if (card.active) {
+          ctx2.shadowColor = idx === 3 ? '#a855f7' : '#00f0ff';
+          ctx2.shadowBlur = 24;
+          ctx2.fillStyle = 'rgba(18, 25, 45, 0.95)';
+          ctx2.strokeStyle = idx === 3 ? '#a855f7' : '#00f0ff';
+          ctx2.lineWidth = 2;
+        } else {
+          ctx2.fillStyle = 'rgba(14, 18, 30, 0.75)';
+          ctx2.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+          ctx2.lineWidth = 1;
         }
 
-        cards.forEach((card, idx) => {
-          ctx2.save();
-          if (card.active) {
-            ctx2.shadowColor = idx === 3 ? '#a855f7' : '#00f0ff';
-            ctx2.shadowBlur = 24;
-            ctx2.fillStyle = 'rgba(18, 25, 45, 0.95)';
-            ctx2.strokeStyle = idx === 3 ? '#a855f7' : '#00f0ff';
-            ctx2.lineWidth = 2;
-          } else {
-            ctx2.fillStyle = 'rgba(14, 18, 30, 0.75)';
-            ctx2.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-            ctx2.lineWidth = 1;
-          }
+        ctx2.beginPath();
+        ctx2.roundRect(card.x, cardY, cardW, cardH, 20);
+        ctx2.fill();
+        ctx2.stroke();
+        ctx2.restore();
 
-          ctx2.beginPath();
-          ctx2.roundRect(card.x, cardY, cardW, cardH, 20);
-          ctx2.fill();
-          ctx2.stroke();
-          ctx2.restore();
+        ctx2.fillStyle = card.active ? (idx === 3 ? '#c084fc' : '#38bdf8') : '#64748b';
+        ctx2.font = '700 13px "Plus Jakarta Sans", sans-serif';
+        ctx2.fillText(card.title, card.x + 22, cardY + 45);
 
-          ctx2.fillStyle = card.active ? (idx === 3 ? '#c084fc' : '#38bdf8') : '#64748b';
-          ctx2.font = '700 13px "Plus Jakarta Sans", sans-serif';
-          ctx2.fillText(card.title, card.x + 22, cardY + 45);
+        ctx2.fillStyle = '#94a3b8';
+        ctx2.font = '600 11px "JetBrains Mono", monospace';
+        ctx2.fillText(card.sub, card.x + 22, cardY + 75);
 
-          ctx2.fillStyle = '#94a3b8';
-          ctx2.font = '600 11px "JetBrains Mono", monospace';
-          ctx2.fillText(card.sub, card.x + 22, cardY + 75);
+        ctx2.fillStyle = '#cbd5e1';
+        ctx2.font = '12px "Plus Jakarta Sans", sans-serif';
+        ctx2.fillText(card.desc, card.x + 22, cardY + 125, cardW - 44);
 
-          ctx2.fillStyle = '#cbd5e1';
-          ctx2.font = '12px "Plus Jakarta Sans", sans-serif';
-          ctx2.fillText(card.desc, card.x + 22, cardY + 125, cardW - 44);
+        ctx2.fillStyle = card.active ? 'rgba(34, 197, 94, 0.2)' : 'rgba(255, 255, 255, 0.05)';
+        ctx2.beginPath();
+        ctx2.roundRect(card.x + 22, cardY + 195, cardW - 44, 30, 999);
+        ctx2.fill();
 
-          ctx2.fillStyle = card.active ? 'rgba(34, 197, 94, 0.2)' : 'rgba(255, 255, 255, 0.05)';
-          ctx2.beginPath();
-          ctx2.roundRect(card.x + 22, cardY + 195, cardW - 44, 30, 999);
-          ctx2.fill();
+        ctx2.fillStyle = card.active ? '#4ade80' : '#64748b';
+        ctx2.font = '600 11px "JetBrains Mono", monospace';
+        ctx2.fillText(card.active ? '● TRANSMITTING' : '○ STANDBY', card.x + 40, cardY + 214);
+      });
 
-          ctx2.fillStyle = card.active ? '#4ade80' : '#64748b';
-          ctx2.font = '600 11px "JetBrains Mono", monospace';
-          ctx2.fillText(card.active ? '● TRANSMITTING' : '○ STANDBY', card.x + 40, cardY + 214);
-        });
-
-        ctx2.font = '700 16px "Plus Jakarta Sans", sans-serif';
-        ctx2.fillStyle = '#ffffff';
-        ctx2.fillText('FLUJO DE CONTEXTO SIN ALUCINACIONES: +800K LÍNEAS DE CÓDIGO', 50, 65);
-
-      } else {
-        // ================= MOBILE 2x2 PIPELINE (LEGIBLE & SHARP) =================
-        const mCards = [
-          { title: '1. AGENTS.md', sub: 'Constitución', x: 20, y: 70, active: t >= 0 && t < 2.5 },
-          { title: '2. Skills Modulares', sub: 'Angular & WCAG', x: w/2 + 10, y: 70, active: t >= 2.5 && t < 5.0 },
-          { title: '3. Data & Schemas', sub: 'SQL Server Maps', x: 20, y: 320, active: t >= 5.0 && t < 7.5 },
-          { title: '4. Cursor Engine', sub: 'Output Verificado', x: w/2 + 10, y: 320, active: t >= 7.5 }
-        ];
-
-        const mCardW = w/2 - 30;
-        const mCardH = 210;
-
-        ctx2.font = '700 15px "Plus Jakarta Sans", sans-serif';
-        ctx2.fillStyle = '#ffffff';
-        ctx2.fillText('ARQUITECTURA DE CONTEXTO', 25, 42);
-
-        mCards.forEach((card, idx) => {
-          ctx2.save();
-          if (card.active) {
-            ctx2.shadowColor = idx === 3 ? '#a855f7' : '#00f0ff';
-            ctx2.shadowBlur = 18;
-            ctx2.fillStyle = 'rgba(20, 28, 52, 0.95)';
-            ctx2.strokeStyle = idx === 3 ? '#a855f7' : '#00f0ff';
-            ctx2.lineWidth = 2;
-          } else {
-            ctx2.fillStyle = 'rgba(14, 18, 30, 0.85)';
-            ctx2.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-            ctx2.lineWidth = 1;
-          }
-
-          ctx2.beginPath();
-          ctx2.roundRect(card.x, card.y, mCardW, mCardH, 16);
-          ctx2.fill();
-          ctx2.stroke();
-          ctx2.restore();
-
-          // Card Typography
-          ctx2.fillStyle = card.active ? (idx === 3 ? '#c084fc' : '#38bdf8') : '#94a3b8';
-          ctx2.font = '700 15px "Plus Jakarta Sans", sans-serif';
-          ctx2.fillText(card.title, card.x + 18, card.y + 40);
-
-          ctx2.fillStyle = '#cbd5e1';
-          ctx2.font = '600 12px "JetBrains Mono", monospace';
-          ctx2.fillText(card.sub, card.x + 18, card.y + 70);
-
-          // Active indicator pill
-          ctx2.fillStyle = card.active ? 'rgba(34, 197, 94, 0.22)' : 'rgba(255, 255, 255, 0.05)';
-          ctx2.beginPath();
-          ctx2.roundRect(card.x + 18, card.y + 140, mCardW - 36, 32, 999);
-          ctx2.fill();
-
-          ctx2.fillStyle = card.active ? '#4ade80' : '#64748b';
-          ctx2.font = '600 12px "JetBrains Mono", monospace';
-          ctx2.fillText(card.active ? '● TRANSMITIENDO' : '○ ESPERANDO', card.x + 30, card.y + 161);
-        });
-      }
+      ctx2.font = '700 16px "Plus Jakarta Sans", sans-serif';
+      ctx2.fillStyle = '#ffffff';
+      ctx2.fillText('FLUJO DE CONTEXTO SIN ALUCINACIONES: +800K LÍNEAS DE CÓDIGO', 50, 65);
 
       requestAnimationFrame(renderVideo2);
     }
     requestAnimationFrame(renderVideo2);
 
-    // ------------------------------------------
-    // 5. DOWNLOAD CLIP (WEBM) VIA MediaRecorder
-    // ------------------------------------------
-    function downloadClip(id) {
-      const targetCanvas = id === 1 ? canvas1 : canvas2;
-      showToast('Grabando clip de 10s en alta resolución...');
-
-      try {
-        const stream = targetCanvas.captureStream(30);
-        const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-        const chunks = [];
-
-        recorder.ondataavailable = e => chunks.push(e.data);
-        recorder.onstop = () => {
-          const blob = new Blob(chunks, { type: 'video/webm' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = id === 1 ? 'sgi-cursor-agent-session.webm' : 'sgi-context-pipeline.webm';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          showToast('¡Video descargado listo para LinkedIn!');
-        };
-
-        recorder.start();
-        setTimeout(() => recorder.stop(), 10000);
-      } catch (err) {
-        showToast('Navegador en reproducción directa');
-      }
-    }
-
     // ==========================================
-    // 6. SIMULATOR INTERACTION
+    // 5. SIMULATOR INTERACTION
     // ==========================================
     const simData = {
       1: {
