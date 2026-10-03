@@ -1687,7 +1687,7 @@
         <span class="section-eyebrow">Evaluación Empírica · Modelos Frontier 2026</span>
         <h2 class="section-title">LLM Benchmark: Modelos Frontier frente a +800K Líneas</h2>
         <p class="section-desc">
-          En sistemas institucionales con auditorías y miles de usuarios concurrentes, los benchmarks sintéticos quedan obsoletos. Evaluamos cómo responden los modelos más potentes del momento &mdash;<strong>Claude Opus 5.5 / Sonnet 5, GPT-6.1 Sol, Cursor Composer 2.5, Gemini 3.8 Flash y Grok 4.7</strong>&mdash; frente a la arquitectura real del SGI: directivas de <code>AGENTS.md</code>, esquemas SQL de 36k líneas y cero regresiones en Angular 18.
+          En sistemas institucionales con auditorías y miles de usuarios concurrentes, los benchmarks sintéticos quedan obsoletos. Evaluamos cómo responden los modelos más potentes del momento &mdash;<strong>Claude Opus 5.5 / Sonnet 5, GPT-6.1 Sol, Cursor Composer 2.5, Gemini 3.8 Flash y Grok 4.7</strong>&mdash; frente a la arquitectura real del SGI: directivas de <code>AGENTS.md</code>, código SQL Server de +100K líneas (1,167 SPs) y cero regresiones en Angular 18.
         </p>
       </div>
 
@@ -1732,7 +1732,7 @@
               <div class="aa-bar-pillar" style="height: 190px; background: linear-gradient(180deg, #00f0ff, #0284c7);">
                 <span class="aa-bar-num">55</span>
               </div>
-              <div class="aa-logo-icon" style="color:var(--accent-cyan)">⬡</div>
+              <div class="aa-logo-icon" style="color:var(--accent-cyan); font-weight:700;">CR</div>
               <span class="aa-model-name">Composer 2.5<br><small>(Agentic Core)</small></span>
             </div>
 
@@ -1750,7 +1750,7 @@
               <div class="aa-bar-pillar" style="height: 178px; background: #18191d; border: 1px solid rgba(255,255,255,0.22);">
                 <span class="aa-bar-num">52</span>
               </div>
-              <div class="aa-logo-icon">⚙</div>
+              <div class="aa-logo-icon" style="font-size:0.65rem; font-weight:700;">SOL</div>
               <span class="aa-model-name">GPT-6.1 Sol<br><small>(max)</small></span>
             </div>
 
@@ -1759,7 +1759,7 @@
               <div class="aa-bar-pillar" style="height: 158px; background: #7c6feb;">
                 <span class="aa-bar-num">46</span>
               </div>
-              <div class="aa-logo-icon">𝕏</div>
+              <div class="aa-logo-icon">X</div>
               <span class="aa-model-name">Grok 4.7<br><small>(xhigh)</small></span>
             </div>
 
@@ -1768,7 +1768,7 @@
               <div class="aa-bar-pillar" style="height: 134px; background: #2563eb;">
                 <span class="aa-bar-num">39</span>
               </div>
-              <div class="aa-logo-icon">🐳</div>
+              <div class="aa-logo-icon" style="font-size:0.65rem; font-weight:700;">DS</div>
               <span class="aa-model-name">DeepSeek V4.1<br><small>Flash (max)</small></span>
             </div>
           </div>
@@ -1787,7 +1787,7 @@
         </button>
         <button class="bench-filter-btn" id="btn-filter-sql" onclick="switchBenchmark('sql')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          Esquemas SQL (+36k LOC)
+          Lógica SQL (+100K LOC)
         </button>
         <button class="bench-filter-btn" id="btn-filter-tokens" onclick="switchBenchmark('tokens')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -1810,7 +1810,7 @@
         <div class="bench-stat-card">
           <span class="bench-stat-badge">Tolerancia a Fallos</span>
           <span class="bench-stat-val">&lt; 0.6%</span>
-          <span class="bench-stat-lbl">Tasa de alucinación en columnas SQL Server gracias al inventario indexado y consultas acotadas.</span>
+          <span class="bench-stat-lbl">Tasa de alucinación en las +100K líneas de código y procedimientos SQL Server gracias a la indexación estricta.</span>
         </div>
         <div class="bench-stat-card">
           <span class="bench-stat-badge">Calidad de Código</span>
@@ -2358,7 +2358,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'Anthropic · Frontier Reasoning (Index: 58)',
         accentColor: '#c2704e',
         accentGrad: 'linear-gradient(135deg, #c2704e, #ea580c)',
-        badge: '👑 #1 Intelligence Index · Cero Regresiones',
+        badge: '#1 Intelligence Index · Cero Regresiones',
         scores: {
           global: 99.4,
           rules: 99.8,
@@ -2367,7 +2367,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         },
         metrics: [
           { key: 'rules', label: 'Adherencia a AGENTS.md', val: 99.8 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 98.2 },
+          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 98.2 },
           { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 99.5 },
           { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 97.0 }
         ],
@@ -2380,7 +2380,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'Cursor AI · Native Agentic Core (Index: 55)',
         accentColor: '#00f0ff',
         accentGrad: 'linear-gradient(135deg, #00f0ff, #0284c7)',
-        badge: '🛠️ Motor Agéntico IDE · Multi-File Loop',
+        badge: 'Motor Agéntico IDE · Multi-File Loop',
         scores: {
           global: 98.6,
           rules: 99.0,
@@ -2389,7 +2389,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         },
         metrics: [
           { key: 'rules', label: 'Adherencia a AGENTS.md', val: 99.0 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 97.5 },
+          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 97.5 },
           { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 98.9 },
           { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 98.5 }
         ],
@@ -2402,7 +2402,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'Google DeepMind · 5M Multimodal Context (Index: 53)',
         accentColor: '#22c55e',
         accentGrad: 'linear-gradient(135deg, #22c55e, #15803d)',
-        badge: '⚡ 5M Context · Ingesta Total de BD',
+        badge: '5M Context · Ingesta Total de BD',
         scores: {
           global: 97.8,
           rules: 96.5,
@@ -2411,11 +2411,11 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         },
         metrics: [
           { key: 'rules', label: 'Adherencia a AGENTS.md', val: 96.5 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 99.6 },
+          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 99.6 },
           { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 96.0 },
           { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 96.0 }
         ],
-        highlight: '<strong>Líder absoluto en ingesta de esquemas masivos.</strong> Mantiene en memoria activa las 36k líneas del diccionario de base de datos (<code>inventario-bd-readonly.json</code>) y resuelve referencias cruzadas sin perder precisión de aguja en el pajar.',
+        highlight: '<strong>Líder absoluto en ingesta de esquemas masivos.</strong> Mantiene en memoria activa las +100k líneas de código SQL Server (1,167 Stored Procedures) y resuelve referencias cruzadas sin perder precisión de aguja en el pajar.',
         role: 'Mapeo Masivo de Base de Datos'
       },
       {
@@ -2424,7 +2424,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'OpenAI · Frontier Architecture (Index: 52)',
         accentColor: '#f59e0b',
         accentGrad: 'linear-gradient(135deg, #f59e0b, #b45309)',
-        badge: '☀️ Razonamiento Autónomo Avanzado',
+        badge: 'Razonamiento Autónomo Avanzado',
         scores: {
           global: 97.5,
           rules: 95.2,
@@ -2433,7 +2433,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         },
         metrics: [
           { key: 'rules', label: 'Adherencia a AGENTS.md', val: 95.2 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 98.0 },
+          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 98.0 },
           { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 96.8 },
           { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 94.5 }
         ],
@@ -2446,7 +2446,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'xAI · Real-time Compute Cluster (Index: 46)',
         accentColor: '#a855f7',
         accentGrad: 'linear-gradient(135deg, #a855f7, #6d28d9)',
-        badge: '🚀 Brute Compute & Graph Parsing',
+        badge: 'Cómputo & Grafos de Dependencias',
         scores: {
           global: 95.2,
           rules: 93.5,
@@ -2455,7 +2455,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         },
         metrics: [
           { key: 'rules', label: 'Adherencia a AGENTS.md', val: 93.5 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 94.8 },
+          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 94.8 },
           { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 94.0 },
           { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 96.2 }
         ],
@@ -2468,7 +2468,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         vendor: 'DeepSeek · Open Weights Frontier (Index: 39)',
         accentColor: '#3b82f6',
         accentGrad: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-        badge: '💡 Máxima Eficiencia Costo/Token',
+        badge: 'Máxima Eficiencia Costo/Token',
         scores: {
           global: 93.4,
           rules: 92.0,
@@ -2477,7 +2477,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         },
         metrics: [
           { key: 'rules', label: 'Adherencia a AGENTS.md', val: 92.0 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 93.5 },
+          { key: 'sql', label: 'Lógica SQL Server (+100K LOC)', val: 93.5 },
           { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 91.8 },
           { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 97.5 }
         ],
@@ -2489,7 +2489,7 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
     const filterLabels = {
       global: 'Score SGI',
       rules: 'Reglas AGENTS',
-      sql: 'Precisión SQL',
+      sql: 'Lógica SQL (+100K)',
       tokens: 'Eficiencia'
     };
 
