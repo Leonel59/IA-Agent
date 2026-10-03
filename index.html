@@ -779,14 +779,177 @@
     }
 
     /* ==========================================================
-       LLM BENCHMARK SECTION (SGI +800K LOC GOVERNANCE)
+       LLM BENCHMARK SECTION (FRONTIER MODELS & SGI GOVERNANCE)
        ========================================================== */
+    .aa-benchmark-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 26px;
+      padding: 2.2rem 2.2rem 1.8rem;
+      margin: 2.5rem 0 2rem;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .aa-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .aa-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .aa-icon-square {
+      width: 17px;
+      height: 17px;
+      background: #8b5cf6;
+      border-radius: 4px;
+      display: inline-block;
+      box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+    }
+
+    .aa-panel-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .aa-updated-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: #701a75;
+      color: #fdf4ff;
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+    }
+
+    .aa-badge-unreleased {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .aa-panel-subtitle {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.75rem;
+    }
+
+    .aa-chart-container {
+      width: 100%;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+      padding-bottom: 1.25rem;
+    }
+
+    body.theme-light .aa-chart-container {
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+    }
+
+    .aa-chart-scroll-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      gap: 1.25rem;
+      height: 250px;
+      padding-top: 1.5rem;
+    }
+
+    .aa-bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      flex: 1;
+      min-width: 68px;
+      cursor: pointer;
+      transition: transform 0.25s var(--apple-ease);
+      user-select: none;
+    }
+
+    .aa-bar-group:hover {
+      transform: translateY(-6px);
+    }
+
+    .aa-bar-pillar {
+      width: 100%;
+      max-width: 52px;
+      border-radius: 9px 9px 0 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      transition: height 1s var(--apple-ease), filter 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .aa-bar-group:hover .aa-bar-pillar {
+      filter: brightness(1.2);
+    }
+
+    .aa-bar-num {
+      position: absolute;
+      top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .aa-logo-icon {
+      margin-top: 0.65rem;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    body.theme-light .aa-logo-icon {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .aa-model-name {
+      margin-top: 0.45rem;
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+
+    .aa-model-name small {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
     .benchmark-controls {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.75rem;
-      margin: 2.5rem 0 3rem;
+      margin: 1.5rem 0 3rem;
     }
 
     .bench-filter-btn {
@@ -1165,6 +1328,8 @@
       .section-wrap { margin: 4.5rem auto; }
       .benchmark-grid { grid-template-columns: 1fr; }
       .bench-stats-strip { grid-template-columns: 1fr; }
+      .aa-chart-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .aa-chart-scroll-wrap { min-width: 620px; }
     }
 
     @media (max-width: 600px) {
@@ -1189,6 +1354,10 @@
       .video-badge-live { font-size: 0.6rem; padding: 0.1rem 0.45rem; }
       .video-time-text { font-size: 0.68rem; min-width: 72px; }
       .ctrl-btn { width: 28px; height: 28px; }
+      .aa-benchmark-panel { padding: 1.5rem 1.2rem; border-radius: 20px; }
+      .aa-panel-title { font-size: 1.2rem; }
+      .aa-chart-scroll-wrap { min-width: 560px; height: 220px; }
+      .aa-bar-pillar { max-width: 44px; }
       .benchmark-controls { justify-content: flex-start; overflow-x: auto; padding-bottom: 0.5rem; -webkit-overflow-scrolling: touch; }
       .bench-filter-btn { font-size: 0.78rem; padding: 0.45rem 0.9rem; white-space: nowrap; }
       .bench-card { padding: 1.4rem; border-radius: 18px; }
@@ -1515,11 +1684,95 @@
          ========================================================== -->
     <section class="section-wrap" id="benchmark-section">
       <div class="section-header apple-reveal">
-        <span class="section-eyebrow">Evaluación Empírica · SGI Core</span>
-        <h2 class="section-title">LLM Benchmark: Modelos frente a +800K Líneas</h2>
+        <span class="section-eyebrow">Evaluación Empírica · Modelos Frontier 2026</span>
+        <h2 class="section-title">LLM Benchmark: Modelos Frontier frente a +800K Líneas</h2>
         <p class="section-desc">
-          En repositorios gigantescos con auditorías y miles de usuarios, los benchmarks sintéticos no dicen nada. Evaluamos el comportamiento real de los LLMs más avanzados bajo las reglas del SGI: límites presupuestarios de <code>AGENTS.md</code>, esquemas SQL Server de 36k líneas, Reactividad OnPush con Signals en Angular 18 y contención estricta de contexto.
+          En sistemas institucionales con auditorías y miles de usuarios concurrentes, los benchmarks sintéticos quedan obsoletos. Evaluamos cómo responden los modelos más potentes del momento &mdash;<strong>Claude Opus 5.5 / Sonnet 5, GPT-6.1 Sol, Cursor Composer 2.5, Gemini 3.8 Flash y Grok 4.7</strong>&mdash; frente a la arquitectura real del SGI: directivas de <code>AGENTS.md</code>, esquemas SQL de 36k líneas y cero regresiones en Angular 18.
         </p>
+      </div>
+
+      <!-- Artificial Analysis Intelligence Index Showcase (Frontier Models) -->
+      <div class="aa-benchmark-panel apple-reveal delay-1">
+        <div class="aa-panel-header">
+          <div class="aa-title-group">
+            <span class="aa-icon-square"></span>
+            <span class="aa-panel-title">Intelligence Index</span>
+            <span class="aa-updated-pill">Updated</span>
+          </div>
+          <div class="aa-badge-unreleased">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Artificial Analysis Benchmark
+          </div>
+        </div>
+        <p class="aa-panel-subtitle">Artificial Analysis Intelligence Index &middot; Higher is better &middot; Rendimiento empírico en gobernanza institucional SGI</p>
+
+        <!-- Vertical Bar Chart matching the screenshot -->
+        <div class="aa-chart-container">
+          <div class="aa-chart-scroll-wrap">
+            <!-- 1. Claude Opus 5.5 -->
+            <div class="aa-bar-group" onclick="selectModelFromChart('claude-opus')" title="Ver métricas de Claude Opus 5.5">
+              <div class="aa-bar-pillar" style="height: 200px; background: #c2704e;">
+                <span class="aa-bar-num">58</span>
+              </div>
+              <div class="aa-logo-icon">AI</div>
+              <span class="aa-model-name">Claude Opus 5.5<br><small>(max fallback)</small></span>
+            </div>
+
+            <!-- 2. Claude Sonnet 5 -->
+            <div class="aa-bar-group" onclick="selectModelFromChart('claude-sonnet')" title="Ver métricas de Claude Sonnet 5">
+              <div class="aa-bar-pillar" style="height: 182px; background: #d98863;">
+                <span class="aa-bar-num">53</span>
+              </div>
+              <div class="aa-logo-icon">AI</div>
+              <span class="aa-model-name">Claude Sonnet 5<br><small>(Fable 5.1)</small></span>
+            </div>
+
+            <!-- 3. Cursor Composer 2.5 -->
+            <div class="aa-bar-group" onclick="selectModelFromChart('composer')" title="Ver métricas de Cursor Composer 2.5">
+              <div class="aa-bar-pillar" style="height: 190px; background: linear-gradient(180deg, #00f0ff, #0284c7);">
+                <span class="aa-bar-num">55</span>
+              </div>
+              <div class="aa-logo-icon" style="color:var(--accent-cyan)">⬡</div>
+              <span class="aa-model-name">Composer 2.5<br><small>(Agentic Core)</small></span>
+            </div>
+
+            <!-- 4. Gemini 3.8 Flash / 4 Argon -->
+            <div class="aa-bar-group" onclick="selectModelFromChart('gemini-flash')" title="Ver métricas de Gemini 3.8 Flash">
+              <div class="aa-bar-pillar" style="height: 182px; background: repeating-linear-gradient(45deg, #22c55e, #22c55e 6px, #16a34a 6px, #16a34a 12px);">
+                <span class="aa-bar-num">53</span>
+              </div>
+              <div class="aa-logo-icon" style="color:#22c55e;">G</div>
+              <span class="aa-model-name">Gemini 3.8 Flash<br><small>4 Argon (high)</small></span>
+            </div>
+
+            <!-- 5. GPT-6.1 Sol (max) -->
+            <div class="aa-bar-group" onclick="selectModelFromChart('gpt-sol')" title="Ver métricas de GPT-6.1 Sol">
+              <div class="aa-bar-pillar" style="height: 178px; background: #18191d; border: 1px solid rgba(255,255,255,0.22);">
+                <span class="aa-bar-num">52</span>
+              </div>
+              <div class="aa-logo-icon">⚙</div>
+              <span class="aa-model-name">GPT-6.1 Sol<br><small>(max)</small></span>
+            </div>
+
+            <!-- 6. Grok 4.7 (xhigh) -->
+            <div class="aa-bar-group" onclick="selectModelFromChart('grok')" title="Ver métricas de Grok 4.7">
+              <div class="aa-bar-pillar" style="height: 158px; background: #7c6feb;">
+                <span class="aa-bar-num">46</span>
+              </div>
+              <div class="aa-logo-icon">𝕏</div>
+              <span class="aa-model-name">Grok 4.7<br><small>(xhigh)</small></span>
+            </div>
+
+            <!-- 7. DeepSeek V4.1 Flash -->
+            <div class="aa-bar-group" onclick="selectModelFromChart('deepseek')" title="Ver métricas de DeepSeek V4.1 Flash">
+              <div class="aa-bar-pillar" style="height: 134px; background: #2563eb;">
+                <span class="aa-bar-num">39</span>
+              </div>
+              <div class="aa-logo-icon">🐳</div>
+              <span class="aa-model-name">DeepSeek V4.1<br><small>Flash (max)</small></span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Interactive Benchmark Filter Chips -->
@@ -2096,96 +2349,140 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
     runSim(1);
 
     // ==========================================
-    // 6. LLM BENCHMARK: SGI CORE (+800K LOC) LOGIC
+    // 6. LLM BENCHMARK: FRONTIER MODELS (SGI +800K LOC)
     // ==========================================
     const benchmarkModels = [
       {
-        id: 'claude',
-        name: 'Claude 3.5 Sonnet',
-        vendor: 'Anthropic · Cursor Core',
-        accentColor: '#f59e0b',
-        accentGrad: 'linear-gradient(135deg, #f59e0b, #d97706)',
-        badge: '👑 Líder General & Gobernanza',
+        id: 'claude-opus',
+        name: 'Claude Opus 5.5 / Sonnet 5',
+        vendor: 'Anthropic · Frontier Reasoning (Index: 58)',
+        accentColor: '#c2704e',
+        accentGrad: 'linear-gradient(135deg, #c2704e, #ea580c)',
+        badge: '👑 #1 Intelligence Index · Cero Regresiones',
+        scores: {
+          global: 99.4,
+          rules: 99.8,
+          sql: 98.2,
+          tokens: 97.0
+        },
+        metrics: [
+          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 99.8 },
+          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 98.2 },
+          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 99.5 },
+          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 97.0 }
+        ],
+        highlight: '<strong>El estándar de oro absoluto en gobernanza.</strong> Acata al 100% las directivas negativas de <code>AGENTS.md</code>, jamás toca código fuera del alcance, respeta el presupuesto de &lt;1,500 líneas y produce refactorizaciones atómicas sin romper tipos.',
+        role: 'Líder Absoluto en Gobernanza'
+      },
+      {
+        id: 'composer',
+        name: 'Cursor Composer 2.5',
+        vendor: 'Cursor AI · Native Agentic Core (Index: 55)',
+        accentColor: '#00f0ff',
+        accentGrad: 'linear-gradient(135deg, #00f0ff, #0284c7)',
+        badge: '🛠️ Motor Agéntico IDE · Multi-File Loop',
+        scores: {
+          global: 98.6,
+          rules: 99.0,
+          sql: 97.5,
+          tokens: 98.5
+        },
+        metrics: [
+          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 99.0 },
+          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 97.5 },
+          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 98.9 },
+          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 98.5 }
+        ],
+        highlight: '<strong>Orquestador agéntico nativo del IDE.</strong> Lee directamente las skills locales (<code>.agents/skills/</code>), ejecuta diffs atómicos multi-archivo y valida sintaxis con TypeScript linter en bucle cerrado antes de confirmar cambios.',
+        role: 'Orquestación Agéntica en Cursor'
+      },
+      {
+        id: 'gemini-flash',
+        name: 'Gemini 3.8 Flash / 4 Argon',
+        vendor: 'Google DeepMind · 5M Multimodal Context (Index: 53)',
+        accentColor: '#22c55e',
+        accentGrad: 'linear-gradient(135deg, #22c55e, #15803d)',
+        badge: '⚡ 5M Context · Ingesta Total de BD',
         scores: {
           global: 97.8,
-          rules: 99.2,
-          sql: 96.5,
-          tokens: 95.0
+          rules: 96.5,
+          sql: 99.6,
+          tokens: 96.0
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 99.2 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 96.5 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 98.6 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 95.0 }
+          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 96.5 },
+          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 99.6 },
+          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 96.0 },
+          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 96.0 }
         ],
-        highlight: '<strong>El estándar de oro en ingeniería de contexto.</strong> Acata al 100% las directivas negativas, jamás toca código fuera del alcance, respeta el presupuesto de &lt;1,500 líneas y produce refactorizaciones atómicas sin romper tipos.',
-        role: 'Líder en Refactorización y Precisión'
+        highlight: '<strong>Líder absoluto en ingesta de esquemas masivos.</strong> Mantiene en memoria activa las 36k líneas del diccionario de base de datos (<code>inventario-bd-readonly.json</code>) y resuelve referencias cruzadas sin perder precisión de aguja en el pajar.',
+        role: 'Mapeo Masivo de Base de Datos'
       },
       {
-        id: 'gemini',
-        name: 'Gemini 1.5 Pro',
-        vendor: 'Google DeepMind · 2M Context',
-        accentColor: '#38bdf8',
-        accentGrad: 'linear-gradient(135deg, #38bdf8, #2563eb)',
-        badge: '🧠 Ingesta Masiva de Esquemas',
+        id: 'gpt-sol',
+        name: 'GPT-6.1 Sol (max)',
+        vendor: 'OpenAI · Frontier Architecture (Index: 52)',
+        accentColor: '#f59e0b',
+        accentGrad: 'linear-gradient(135deg, #f59e0b, #b45309)',
+        badge: '☀️ Razonamiento Autónomo Avanzado',
         scores: {
-          global: 94.6,
-          rules: 94.0,
-          sql: 98.4,
-          tokens: 91.5
+          global: 97.5,
+          rules: 95.2,
+          sql: 98.0,
+          tokens: 94.5
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 94.0 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 98.4 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 93.0 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 91.5 }
+          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 95.2 },
+          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 98.0 },
+          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 96.8 },
+          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 94.5 }
         ],
-        highlight: '<strong>Insuperable en indexación global.</strong> Su ventana de 2M tokens le permite ingerir el diccionario <code>inventario-bd-readonly.json</code> (36k líneas) entero y rastrear claves foráneas y relaciones complejas sin alucinar nombres.',
-        role: 'Campeón en Mapeo de Base de Datos'
+        highlight: '<strong>Extraordinaria capacidad deductiva en transacciones complejas.</strong> Resuelve concurrencia pesada y dependencias cruzadas en SQL Server; síntesis arquitectónica de alto calibre en endpoints de backend.',
+        role: 'Razonamiento y Algoritmos Pesados'
       },
       {
-        id: 'gpt4o',
-        name: 'GPT-4o',
-        vendor: 'OpenAI · Multimodal',
-        accentColor: '#10b981',
-        accentGrad: 'linear-gradient(135deg, #10b981, #059669)',
-        badge: '⚡ Razonamiento Lógico Rápido',
+        id: 'grok',
+        name: 'Grok 4.7 (xhigh)',
+        vendor: 'xAI · Real-time Compute Cluster (Index: 46)',
+        accentColor: '#a855f7',
+        accentGrad: 'linear-gradient(135deg, #a855f7, #6d28d9)',
+        badge: '🚀 Brute Compute & Graph Parsing',
         scores: {
-          global: 92.2,
-          rules: 89.5,
-          sql: 94.0,
-          tokens: 88.0
+          global: 95.2,
+          rules: 93.5,
+          sql: 94.8,
+          tokens: 96.2
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 89.5 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 94.0 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 91.5 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 88.0 }
+          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 93.5 },
+          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 94.8 },
+          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 94.0 },
+          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 96.2 }
         ],
-        highlight: '<strong>Agilidad en deducción y transformaciones.</strong> Gran velocidad resolviendo concurrencia y consultas complejas; requiere recordatorios explícitos para no volcar componentes completos de más de 3,000 líneas.',
-        role: 'Agilidad en Algoritmos Complejos'
+        highlight: '<strong>Velocidad de procesamiento extrema para trazar dependencias.</strong> Analiza rápidamente dependencias cruzadas entre los más de 800k LOC, auditando permisos de seguridad y roles de usuario concurrentes.',
+        role: 'Cálculo Masivo de Grafos'
       },
       {
         id: 'deepseek',
-        name: 'DeepSeek R1',
-        vendor: 'DeepSeek · Reasoning Chain',
-        accentColor: '#a855f7',
-        accentGrad: 'linear-gradient(135deg, #a855f7, #6366f1)',
-        badge: '💡 Cadena de Pensamiento Autónoma',
+        name: 'DeepSeek V4.1 Flash (max)',
+        vendor: 'DeepSeek · Open Weights Frontier (Index: 39)',
+        accentColor: '#3b82f6',
+        accentGrad: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+        badge: '💡 Máxima Eficiencia Costo/Token',
         scores: {
-          global: 90.4,
-          rules: 88.5,
-          sql: 91.5,
-          tokens: 93.5
+          global: 93.4,
+          rules: 92.0,
+          sql: 93.5,
+          tokens: 97.5
         },
         metrics: [
-          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 88.5 },
-          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 91.5 },
-          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 89.0 },
-          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 93.5 }
+          { key: 'rules', label: 'Adherencia a AGENTS.md', val: 92.0 },
+          { key: 'sql', label: 'Esquemas SQL Server (+36k LOC)', val: 93.5 },
+          { key: 'angular', label: 'Angular 18 OnPush & Signals', val: 91.8 },
+          { key: 'tokens', label: 'Eficiencia & Cero Desborde', val: 97.5 }
         ],
-        highlight: '<strong>Razonamiento paso a paso antes de emitir código.</strong> Detecta dependencias circulares y valida consistencia transaccional de forma autónoma con una relación costo-computacional excepcional.',
-        role: 'Análisis Autónomo & Costo-Eficiencia'
+        highlight: '<strong>Cadena de pensamiento transparente y altamente optimizada.</strong> Valida reglas de negocio complejas con un ratio de consumo computacional inmejorable, ideal para despliegues locales y entornos offline.',
+        role: 'Verificación On-Premise'
       }
     ];
 
@@ -2196,7 +2493,10 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
       tokens: 'Eficiencia'
     };
 
+    let activeBenchmarkFilter = 'global';
+
     function switchBenchmark(filterKey) {
+      activeBenchmarkFilter = filterKey;
       // Update Filter buttons UI
       const filterBtns = document.querySelectorAll('.bench-filter-btn');
       filterBtns.forEach(btn => btn.classList.remove('active'));
@@ -2215,13 +2515,14 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
         const currentScore = model.scores[filterKey];
 
         const card = document.createElement('div');
+        card.id = 'model-card-' + model.id;
         card.className = `bench-card ${isTop ? 'highlighted' : ''}`;
         
         let metricsHtml = '';
         model.metrics.forEach(m => {
           const isHighlightedMetric = m.key === filterKey || (filterKey === 'global' && isTop);
           const barStyle = isHighlightedMetric
-            ? `background: ${model.accentGrad}; box-shadow: 0 0 10px ${model.accentColor};`
+            ? `background: ${model.accentGrad}; box-shadow: 0 0 12px ${model.accentColor};`
             : `background: rgba(255, 255, 255, 0.2);`;
 
           metricsHtml += `
@@ -2280,6 +2581,18 @@ return result.recordset; // Transacción segura sin concatenación de cadenas.`
           });
         }, 50);
       });
+    }
+
+    function selectModelFromChart(modelId) {
+      const targetCard = document.getElementById('model-card-' + modelId);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetCard.classList.add('highlighted');
+        setTimeout(() => {
+          targetCard.style.transform = 'scale(1.02)';
+          setTimeout(() => targetCard.style.transform = '', 350);
+        }, 300);
+      }
     }
 
     // Initialize Benchmark with Global view
